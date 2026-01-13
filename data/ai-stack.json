@@ -1,0 +1,167 @@
+{
+    "type": "tech",
+    "category": "AI/ML Technology Stack",
+    "title": "Our AI & Machine Learning Technology Stack",
+    "subtitle": "We leverage cutting-edge technologies and frameworks to build robust, scalable AI solutions.",
+    "sections": {
+        "title": "AI/ML Frameworks & Tools",
+        "items": [
+            {
+                "icon": "fab fa-python",
+                "title": "Core Frameworks",
+                "items": [
+                    {
+                        "name": "TensorFlow",
+                        "description": "Production-grade machine learning"
+                    },
+                    {
+                        "name": "PyTorch",
+                        "description": "Research & development framework"
+                    },
+                    {
+                        "name": "Scikit-learn",
+                        "description": "Traditional machine learning"
+                    },
+                    {
+                        "name": "Keras",
+                        "description": "Neural network abstraction"
+                    },
+                    {
+                        "name": "OpenCV",
+                        "description": "Computer vision library"
+                    }
+                ]
+            },
+            {
+                "icon": "fas fa-brain",
+                "title": "LLM & NLP Tools",
+                "items": [
+                    {
+                        "name": "OpenAI GPT",
+                        "description": "Large language models"
+                    },
+                    {
+                        "name": "Hugging Face",
+                        "description": "Transformers library"
+                    },
+                    {
+                        "name": "LangChain",
+                        "description": "LLM application framework"
+                    },
+                    {
+                        "name": "spaCy",
+                        "description": "Industrial-strength NLP"
+                    },
+                    {
+                        "name": "NLTK",
+                        "description": "Text processing library"
+                    }
+                ]
+            },
+            {
+                "icon": "fas fa-database",
+                "title": "Data & Vector DBs",
+                "items": [
+                    {
+                        "name": "Pinecone",
+                        "description": "Vector database"
+                    },
+                    {
+                        "name": "Weaviate",
+                        "description": "Vector search engine"
+                    },
+                    {
+                        "name": "PostgreSQL",
+                        "description": "Relational database with extensions"
+                    },
+                    {
+                        "name": "MongoDB",
+                        "description": "NoSQL document database"
+                    },
+                    {
+                        "name": "Redis",
+                        "description": "In-memory data store"
+                    }
+                ]
+            },
+            {
+                "icon": "fas fa-code-branch",
+                "title": "MLOps & Deployment",
+                "items": [
+                    {
+                        "name": "MLflow",
+                        "description": "Experiment tracking"
+                    },
+                    {
+                        "name": "Kubeflow",
+                        "description": "Kubernetes ML platform"
+                    },
+                    {
+                        "name": "Docker",
+                        "description": "Containerization"
+                    },
+                    {
+                        "name": "FastAPI",
+                        "description": "Modern API framework"
+                    },
+                    {
+                        "name": "Gradio",
+                        "description": "UI for ML models"
+                    }
+                ]
+            },
+            {
+                "icon": "fas fa-chart-line",
+                "title": "Visualization & Monitoring",
+                "items": [
+                    {
+                        "name": "TensorBoard",
+                        "description": "Model visualization"
+                    },
+                    {
+                        "name": "Grafana",
+                        "description": "Monitoring dashboards"
+                    },
+                    {
+                        "name": "Prometheus",
+                        "description": "Metrics collection"
+                    },
+                    {
+                        "name": "Plotly",
+                        "description": "Interactive visualization"
+                    },
+                    {
+                        "name": "Streamlit",
+                        "description": "Data application framework"
+                    }
+                ]
+            },
+            {
+                "icon": "fas fa-cloud",
+                "title": "Cloud Platforms",
+                "items": [
+                    {
+                        "name": "AWS SageMaker",
+                        "description": "Managed ML service"
+                    },
+                    {
+                        "name": "Google Vertex AI",
+                        "description": "Unified AI platform"
+                    },
+                    {
+                        "name": "Azure ML",
+                        "description": "Enterprise ML platform"
+                    },
+                    {
+                        "name": "Databricks",
+                        "description": "Lakehouse platform"
+                    },
+                    {
+                        "name": "Hugging Face Spaces",
+                        "description": "ML app hosting"
+                    }
+                ]
+            }
+        ]
+    }
+}

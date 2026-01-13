@@ -1,0 +1,116 @@
+{
+    "type": "service",
+    "category": "Creative & UX Design",
+    "icon": "fas fa-paint-brush",
+    "badgeStyle": "background: rgba(255, 0, 255, 0.2); color: var(--accent-magenta);",
+    "titleStyle": "background: linear-gradient(to right, var(--accent-magenta), var(--accent-purple)); -webkit-background-clip: text; background-clip: text;",
+    "title": "Design That Engages and Converts",
+    "subtitle": "We create beautiful, intuitive designs that enhance user experiences and drive business results.",
+    "capabilities": {
+        "title": "Design Services",
+        "items": [
+            {
+                "icon": "fas fa-object-group",
+                "iconStyle": "background: rgba(255, 0, 255, 0.15); color: var(--accent-magenta);",
+                "title": "UX/UI Product Design",
+                "description": "User-centered design for digital products and applications.",
+                "features": [
+                    "User Research & Testing",
+                    "Wireframing & Prototyping",
+                    "Interaction Design",
+                    "Design Systems"
+                ]
+            },
+            {
+                "icon": "fas fa-robot",
+                "iconStyle": "background: rgba(255, 0, 255, 0.15); color: var(--accent-magenta);",
+                "title": "AI-Enhanced UX",
+                "description": "Intelligent interfaces powered by artificial intelligence.",
+                "features": [
+                    "Personalized Experiences",
+                    "Predictive Interfaces",
+                    "Intelligent Recommendations",
+                    "Adaptive UI"
+                ]
+            },
+            {
+                "icon": "fas fa-palette",
+                "iconStyle": "background: rgba(255, 0, 255, 0.15); color: var(--accent-magenta);",
+                "title": "Brand Identity",
+                "description": "Complete brand development and visual identity systems.",
+                "features": [
+                    "Logo & Identity Design",
+                    "Brand Guidelines",
+                    "Visual Language Systems",
+                    "Brand Strategy"
+                ]
+            },
+            {
+                "icon": "fas fa-magic",
+                "iconStyle": "background: rgba(255, 0, 255, 0.15); color: var(--accent-magenta);",
+                "title": "Interactive Prototyping",
+                "description": "High-fidelity interactive prototypes for user testing.",
+                "features": [
+                    "Clickable Prototypes",
+                    "User Flow Simulations",
+                    "Animation Design",
+                    "Micro-interactions"
+                ]
+            },
+            {
+                "icon": "fas fa-mobile-alt",
+                "iconStyle": "background: rgba(255, 0, 255, 0.15); color: var(--accent-magenta);",
+                "title": "Responsive Design",
+                "description": "Designs that work perfectly across all devices and screen sizes.",
+                "features": [
+                    "Mobile-first Design",
+                    "Cross-platform Consistency",
+                    "Accessibility Design",
+                    "Performance Optimization"
+                ]
+            },
+            {
+                "icon": "fas fa-chart-bar",
+                "iconStyle": "background: rgba(255, 0, 255, 0.15); color: var(--accent-magenta);",
+                "title": "Design Analytics",
+                "description": "Data-driven design decisions based on user behavior.",
+                "features": [
+                    "User Behavior Analysis",
+                    "A/B Testing Design",
+                    "Conversion Optimization",
+                    "Heatmap Analysis"
+                ]
+            }
+        ]
+    },
+    "workflow": {
+        "title": "Design Process",
+        "steps": [
+            {
+                "number": "1",
+                "title": "Research & Discovery",
+                "description": "Understand users, business goals, and market context."
+            },
+            {
+                "number": "2",
+                "title": "Ideation & Concept Development",
+                "description": "Generate design concepts and explore creative directions."
+            },
+            {
+                "number": "3",
+                "title": "Wireframing & Prototyping",
+                "description": "Create low and high-fidelity prototypes for testing."
+            },
+            {
+                "number": "4",
+                "title": "Visual Design & Testing",
+                "description": "Develop visual designs and conduct user testing."
+            },
+            {
+                "number": "5",
+                "title": "Implementation & Handoff",
+                "description": "Prepare design systems and assets for development."
+            }
+        ]
+    }
+}

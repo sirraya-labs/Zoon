@@ -1,0 +1,133 @@
+{
+    "type": "case-study",
+    "title": "Real Results with AI",
+    "subtitle": "Explore how we've helped businesses transform with AI and technology solutions.",
+    "cases": [
+        {
+            "industry": "E-commerce",
+            "icon": "fas fa-shopping-cart",
+            "color": "rgba(157, 78, 221, 0.15)",
+            "title": "AI-Powered Personalization Engine",
+            "description": "Built a recommendation system that increased conversion rates by 35% for a major online retailer.",
+            "results": [
+                {
+                    "label": "Conversion Increase",
+                    "value": "+35%"
+                },
+                {
+                    "label": "ROI",
+                    "value": "4.2x"
+                },
+                {
+                    "label": "Development Time",
+                    "value": "12 weeks"
+                }
+            ]
+        },
+        {
+            "industry": "Healthcare",
+            "icon": "fas fa-heartbeat",
+            "color": "rgba(255, 0, 255, 0.15)",
+            "title": "Medical Image Analysis System",
+            "description": "Developed a computer vision system that reduces diagnosis time by 60% for radiologists.",
+            "results": [
+                {
+                    "label": "Time Reduction",
+                    "value": "-60%"
+                },
+                {
+                    "label": "Accuracy",
+                    "value": "94%"
+                },
+                {
+                    "label": "Implementation",
+                    "value": "6 months"
+                }
+            ]
+        },
+        {
+            "industry": "Finance",
+            "icon": "fas fa-chart-line",
+            "color": "rgba(0, 243, 255, 0.15)",
+            "title": "Fraud Detection AI",
+            "description": "Created a real-time fraud detection system that reduced false positives by 75% for a fintech company.",
+            "results": [
+                {
+                    "label": "False Positives",
+                    "value": "-75%"
+                },
+                {
+                    "label": "Detection Rate",
+                    "value": "99.8%"
+                },
+                {
+                    "label": "Annual Savings",
+                    "value": "$2.5M"
+                }
+            ]
+        },
+        {
+            "industry": "Manufacturing",
+            "icon": "fas fa-industry",
+            "color": "rgba(67, 97, 238, 0.15)",
+            "title": "Predictive Maintenance System",
+            "description": "Implemented IoT and AI solution that reduced equipment downtime by 45% for manufacturing plants.",
+            "results": [
+                {
+                    "label": "Downtime Reduction",
+                    "value": "-45%"
+                },
+                {
+                    "label": "Cost Savings",
+                    "value": "$1.8M/yr"
+                },
+                {
+                    "label": "ROI Period",
+                    "value": "8 months"
+                }
+            ]
+        },
+        {
+            "industry": "Retail",
+            "icon": "fas fa-store",
+            "color": "rgba(0, 255, 157, 0.15)",
+            "title": "Inventory Optimization AI",
+            "description": "Built predictive analytics system that reduced inventory costs by 30% while improving stock availability.",
+            "results": [
+                {
+                    "label": "Inventory Cost",
+                    "value": "-30%"
+                },
+                {
+                    "label": "Stock Availability",
+                    "value": "+25%"
+                },
+                {
+                    "label": "Implementation",
+                    "value": "16 weeks"
+                }
+            ]
+        },
+        {
+            "industry": "SaaS",
+            "icon": "fas fa-cloud",
+            "color": "rgba(255, 107, 107, 0.15)",
+            "title": "Customer Churn Prediction",
+            "description": "Developed ML model that identifies at-risk customers with 92% accuracy, reducing churn by 40%.",
+            "results": [
+                {
+                    "label": "Churn Reduction",
+                    "value": "-40%"
+                },
+                {
+                    "label": "Accuracy",
+                    "value": "92%"
+                },
+                {
+                    "label": "Revenue Saved",
+                    "value": "$3.2M/yr"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,116 @@
+{
+    "type": "service",
+    "category": "Modern Web & Mobile",
+    "icon": "fas fa-code",
+    "badgeStyle": "background: rgba(67, 97, 238, 0.2); color: var(--accent-blue);",
+    "titleStyle": "background: linear-gradient(to right, var(--accent-blue), var(--accent-cyan)); -webkit-background-clip: text; background-clip: text;",
+    "title": "Build High-Performance Digital Experiences",
+    "subtitle": "We create scalable, responsive web and mobile applications that deliver exceptional user experiences and drive business growth.",
+    "capabilities": {
+        "title": "Web & Mobile Expertise",
+        "items": [
+            {
+                "icon": "fas fa-laptop-code",
+                "iconStyle": "background: rgba(67, 97, 238, 0.15); color: var(--accent-blue);",
+                "title": "Custom Web Applications",
+                "description": "Full-stack web applications built with modern frameworks for performance and scalability.",
+                "features": [
+                    "React.js / Next.js Development",
+                    "Vue.js / Nuxt.js Applications",
+                    "Real-time Web Applications",
+                    "Progressive Web Apps (PWAs)"
+                ]
+            },
+            {
+                "icon": "fas fa-mobile-alt",
+                "iconStyle": "background: rgba(67, 97, 238, 0.15); color: var(--accent-blue);",
+                "title": "Mobile App Development",
+                "description": "Native and cross-platform mobile applications for iOS and Android.",
+                "features": [
+                    "Native iOS (Swift)",
+                    "Native Android (Kotlin)",
+                    "React Native Development",
+                    "Flutter Applications"
+                ]
+            },
+            {
+                "icon": "fas fa-plug",
+                "iconStyle": "background: rgba(67, 97, 238, 0.15); color: var(--accent-blue);",
+                "title": "API Development & Integration",
+                "description": "Robust APIs and seamless third-party integrations.",
+                "features": [
+                    "RESTful API Development",
+                    "GraphQL APIs",
+                    "Third-party API Integration",
+                    "Microservices Architecture"
+                ]
+            },
+            {
+                "icon": "fas fa-shopping-cart",
+                "iconStyle": "background: rgba(67, 97, 238, 0.15); color: var(--accent-blue);",
+                "title": "E-commerce Solutions",
+                "description": "Custom e-commerce platforms and marketplace development.",
+                "features": [
+                    "Custom E-commerce Platforms",
+                    "Shopify/WordPress Development",
+                    "Payment Gateway Integration",
+                    "Inventory Management Systems"
+                ]
+            },
+            {
+                "icon": "fas fa-cloud",
+                "iconStyle": "background: rgba(67, 97, 238, 0.15); color: var(--accent-blue);",
+                "title": "Cloud Architecture",
+                "description": "Scalable cloud infrastructure and deployment solutions.",
+                "features": [
+                    "AWS/Azure/Google Cloud",
+                    "Serverless Architecture",
+                    "Containerization (Docker/Kubernetes)",
+                    "CI/CD Pipeline Setup"
+                ]
+            },
+            {
+                "icon": "fas fa-shield-alt",
+                "iconStyle": "background: rgba(67, 97, 238, 0.15); color: var(--accent-blue);",
+                "title": "Performance & Security",
+                "description": "Optimized applications with enterprise-grade security.",
+                "features": [
+                    "Performance Optimization",
+                    "Security Audits & Implementation",
+                    "SEO Optimization",
+                    "Accessibility Compliance"
+                ]
+            }
+        ]
+    },
+    "workflow": {
+        "title": "Our Development Process",
+        "steps": [
+            {
+                "number": "1",
+                "title": "Discovery & Planning",
+                "description": "Requirements gathering, user stories, and technical architecture planning."
+            },
+            {
+                "number": "2",
+                "title": "Design & Prototyping",
+                "description": "UI/UX design, wireframing, and interactive prototyping."
+            },
+            {
+                "number": "3",
+                "title": "Development & Testing",
+                "description": "Agile development with continuous testing and quality assurance."
+            },
+            {
+                "number": "4",
+                "title": "Deployment & Launch",
+                "description": "Production deployment, performance optimization, and launch support."
+            },
+            {
+                "number": "5",
+                "title": "Maintenance & Support",
+                "description": "Ongoing maintenance, updates, and technical support."
+            }
+        ]
+    }
+}

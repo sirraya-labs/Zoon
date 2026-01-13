@@ -1,0 +1,170 @@
+{
+    "type": "home",
+    "hero": {
+        "badge": "AI-First Software Engineering",
+        "title": "Intelligent Systems for the Next Era of Business",
+        "subtitle": "Zoon.ai combines cutting-edge AI research with industrial-strength engineering to build deployable, competitive intelligence solutions that transform businesses and redefine industries."
+    },
+    "stats": [
+        {
+            "value": "200+",
+            "label": "AI Projects Delivered"
+        },
+        {
+            "value": "99.7%",
+            "label": "Client Satisfaction"
+        },
+        {
+            "value": "45%",
+            "label": "Avg. Efficiency Gain"
+        },
+        {
+            "value": "4.2x",
+            "label": "Avg. ROI for Clients"
+        }
+    ],
+    "services": {
+        "title": "Core Service Pillars",
+        "subtitle": "Specialized expertise across four primary departments, engineered to handle complex technical challenges and deliver market-ready solutions.",
+        "items": [
+            {
+                "id": "ai-ml",
+                "icon": "fas fa-brain",
+                "iconClass": "ai-icon",
+                "title": "AI & Machine Learning",
+                "description": "Harnessing data to drive intelligent decision-making with custom AI solutions that provide competitive advantage.",
+                "features": [
+                    "Custom AI Model Development",
+                    "Generative AI & LLM Integration",
+                    "Predictive Analytics & Forecasting",
+                    "Computer Vision Solutions",
+                    "AI-Powered Automation"
+                ],
+                "linkText": "Explore AI Capabilities",
+                "page": "ai-ml"
+            },
+            {
+                "id": "web-mobile",
+                "icon": "fas fa-code",
+                "title": "Modern Web & Mobile",
+                "description": "Transforming ideas into high-performance digital interfaces with cutting-edge web and mobile technologies.",
+                "features": [
+                    "Scalable Web Applications",
+                    "Native iOS & Android Development",
+                    "Progressive Web Apps (PWAs)",
+                    "Real-time Applications",
+                    "API Development & Integration"
+                ],
+                "linkText": "View Web Portfolio",
+                "page": "web-mobile"
+            },
+            {
+                "id": "enterprise",
+                "icon": "fas fa-server",
+                "title": "Enterprise Solutions",
+                "description": "Building the backbone of modern business operations with scalable, secure, and intelligent enterprise systems.",
+                "features": [
+                    "MVP Development & Startup Incubation",
+                    "Custom ERP/CRM Systems",
+                    "Business Process Automation",
+                    "Legacy System Modernization",
+                    "Cloud Infrastructure & DevOps"
+                ],
+                "linkText": "See Enterprise Solutions",
+                "page": "enterprise"
+            },
+            {
+                "id": "design",
+                "icon": "fas fa-paint-brush",
+                "title": "Creative & UX Design",
+                "description": "Where aesthetics meet functional excellence through user-centric design frameworks and compelling brand identities.",
+                "features": [
+                    "UX/UI Product Design",
+                    "AI-Enhanced User Experiences",
+                    "Brand Identity & Logo Design",
+                    "Interactive Prototyping",
+                    "Design Systems & Guidelines"
+                ],
+                "linkText": "Explore Design Work",
+                "page": "design"
+            }
+        ]
+    },
+    "showcase": {
+        "title": "The Zoon.ai Advantage",
+        "subtitle": "Our specialized AI division combines academic rigor with industry-leading technical execution to deliver deployable intelligence.",
+        "details": {
+            "title": "Specialized AI Development for Real-World Impact",
+            "paragraphs": [
+                "Zoon.ai represents our deep focus on applied artificial intelligence. We don't just build models; we engineer complete intelligence systems that integrate seamlessly into your operations.",
+                "Our team of data scientists, ML engineers, and AI researchers work with cutting-edge technologies to deliver solutions that are both innovative and production-ready."
+            ]
+        },
+        "technologies": [
+            "TensorFlow & PyTorch",
+            "OpenAI & LLMs",
+            "LangChain",
+            "Computer Vision",
+            "Vector Databases",
+            "MLOps Pipelines",
+            "Transformers",
+            "Reinforcement Learning"
+        ]
+    },
+    "process": {
+        "title": "The Zoon.ai Engine",
+        "subtitle": "Our proven 4-phase methodology for delivering AI-first solutions with precision, scalability, and measurable impact.",
+        "steps": [
+            {
+                "number": "01",
+                "title": "Discover & Analyze",
+                "description": "Deep dive into business context, data landscape, and success metrics to define AI opportunity spaces."
+            },
+            {
+                "number": "02",
+                "title": "Architect & Plan",
+                "description": "Design technical architecture, select optimal models, and create implementation roadmap with milestones."
+            },
+            {
+                "number": "03",
+                "title": "Build & Train",
+                "description": "Develop, train, and validate AI models with continuous iteration and performance optimization."
+            },
+            {
+                "number": "04",
+                "title": "Deploy & Scale",
+                "description": "Production deployment with MLOps, monitoring, and scaling strategies for long-term success."
+            }
+        ]
+    },
+    "contact": {
+        "title": "Ready to Build Intelligence?",
+        "subtitle": "Start your AI journey with Zoon.ai. Share your project details and we'll craft a custom solution tailored to your business objectives.",
+        "methods": [
+            {
+                "icon": "fas fa-envelope",
+                "title": "Email Us",
+                "details": ["contact@zoon.ai", "projects@zoon.ai"]
+            },
+            {
+                "icon": "fas fa-phone",
+                "title": "Call Us",
+                "details": ["+1 (555) 123-4567", "Mon-Fri, 9am-6pm EST"]
+            },
+            {
+                "icon": "fas fa-map-marker-alt",
+                "title": "Visit Us",
+                "details": ["123 Tech Avenue", "San Francisco, CA 94107"]
+            },
+            {
+                "icon": "fas fa-calendar",
+                "title": "Schedule a Call",
+                "details": ["Book a 30-minute consultation with our AI specialists to discuss your project."],
+                "button": {
+                    "icon": "fas fa-video",
+                    "text": "Book Discovery Call"
+                }
+            }
+        ]
+    }
+}

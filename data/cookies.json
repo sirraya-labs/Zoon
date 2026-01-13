@@ -1,0 +1,39 @@
+{
+    "type": "generic",
+    "category": "Cookie Policy",
+    "icon": "fas fa-cookie-bite",
+    "title": "Cookie Policy",
+    "subtitle": "How we use cookies and similar technologies.",
+    "content": [
+        {
+            "title": "What Are Cookies",
+            "paragraphs": [
+                "Cookies are small text files that are placed on your computer or mobile device when you visit our website. They help us provide you with a better experience and understand how our site is being used.",
+                "We use both session cookies (which expire when you close your browser) and persistent cookies (which stay on your device for a set period)."
+            ]
+        },
+        {
+            "title": "How We Use Cookies",
+            "paragraphs": [
+                "We use cookies to remember your preferences, understand how you use our website, and improve your browsing experience.",
+                "Cookies help us analyze website traffic, personalize content, and provide social media features."
+            ]
+        },
+        {
+            "title": "Types of Cookies We Use",
+            "paragraphs": [
+                "Essential cookies: Necessary for the website to function properly.",
+                "Analytics cookies: Help us understand how visitors interact with our website.",
+                "Preference cookies: Remember your choices and preferences.",
+                "Marketing cookies: Track visitors across websites to display relevant advertisements."
+            ]
+        },
+        {
+            "title": "Managing Cookies",
+            "paragraphs": [
+                "You can control and/or delete cookies as you wish. You can delete all cookies that are already on your computer and you can set most browsers to prevent them from being placed.",
+                "However, if you do this, you may have to manually adjust some preferences every time you visit a site and some services and functionalities may not work."
+            ]
+        }
+    ]
+}

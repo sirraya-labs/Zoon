@@ -1,0 +1,167 @@
+{
+    "type": "tech",
+    "category": "Web Technology Stack",
+    "title": "Modern Web Development Stack",
+    "subtitle": "We use cutting-edge technologies to build fast, scalable, and maintainable web applications.",
+    "sections": {
+        "title": "Web Development Technologies",
+        "items": [
+            {
+                "icon": "fab fa-js",
+                "title": "Frontend Frameworks",
+                "items": [
+                    {
+                        "name": "React.js",
+                        "description": "Component-based UI library"
+                    },
+                    {
+                        "name": "Next.js",
+                        "description": "React framework with SSR"
+                    },
+                    {
+                        "name": "Vue.js",
+                        "description": "Progressive framework"
+                    },
+                    {
+                        "name": "Angular",
+                        "description": "Enterprise framework"
+                    },
+                    {
+                        "name": "Svelte",
+                        "description": "Compiler-based framework"
+                    }
+                ]
+            },
+            {
+                "icon": "fas fa-server",
+                "title": "Backend Technologies",
+                "items": [
+                    {
+                        "name": "Node.js",
+                        "description": "JavaScript runtime"
+                    },
+                    {
+                        "name": "Python Django",
+                        "description": "Batteries-included framework"
+                    },
+                    {
+                        "name": "FastAPI",
+                        "description": "Modern Python API framework"
+                    },
+                    {
+                        "name": "Spring Boot",
+                        "description": "Java microservices"
+                    },
+                    {
+                        "name": "Go",
+                        "description": "High-performance language"
+                    }
+                ]
+            },
+            {
+                "icon": "fas fa-database",
+                "title": "Databases",
+                "items": [
+                    {
+                        "name": "PostgreSQL",
+                        "description": "Advanced relational database"
+                    },
+                    {
+                        "name": "MongoDB",
+                        "description": "Document database"
+                    },
+                    {
+                        "name": "Redis",
+                        "description": "In-memory data store"
+                    },
+                    {
+                        "name": "Elasticsearch",
+                        "description": "Search & analytics"
+                    },
+                    {
+                        "name": "MySQL",
+                        "description": "Relational database"
+                    }
+                ]
+            },
+            {
+                "icon": "fas fa-cloud",
+                "title": "Cloud Services",
+                "items": [
+                    {
+                        "name": "AWS",
+                        "description": "Amazon Web Services"
+                    },
+                    {
+                        "name": "Azure",
+                        "description": "Microsoft Cloud"
+                    },
+                    {
+                        "name": "Google Cloud",
+                        "description": "Google Cloud Platform"
+                    },
+                    {
+                        "name": "Vercel",
+                        "description": "Frontend cloud"
+                    },
+                    {
+                        "name": "Netlify",
+                        "description": "Web hosting platform"
+                    }
+                ]
+            },
+            {
+                "icon": "fas fa-tools",
+                "title": "DevOps & Tools",
+                "items": [
+                    {
+                        "name": "Docker",
+                        "description": "Container platform"
+                    },
+                    {
+                        "name": "Kubernetes",
+                        "description": "Container orchestration"
+                    },
+                    {
+                        "name": "GitHub Actions",
+                        "description": "CI/CD automation"
+                    },
+                    {
+                        "name": "Jenkins",
+                        "description": "Automation server"
+                    },
+                    {
+                        "name": "Terraform",
+                        "description": "Infrastructure as code"
+                    }
+                ]
+            },
+            {
+                "icon": "fas fa-shield-alt",
+                "title": "Testing & Security",
+                "items": [
+                    {
+                        "name": "Jest",
+                        "description": "JavaScript testing"
+                    },
+                    {
+                        "name": "Cypress",
+                        "description": "End-to-end testing"
+                    },
+                    {
+                        "name": "Selenium",
+                        "description": "Browser automation"
+                    },
+                    {
+                        "name": "OWASP",
+                        "description": "Security standards"
+                    },
+                    {
+                        "name": "SonarQube",
+                        "description": "Code quality"
+                    }
+                ]
+            }
+        ]
+    }
+}

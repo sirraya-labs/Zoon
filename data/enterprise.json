@@ -1,0 +1,116 @@
+{
+    "type": "service",
+    "category": "Enterprise Solutions",
+    "icon": "fas fa-server",
+    "badgeStyle": "background: rgba(0, 255, 157, 0.2); color: var(--accent-green);",
+    "titleStyle": "background: linear-gradient(to right, var(--accent-green), var(--accent-blue)); -webkit-background-clip: text; background-clip: text;",
+    "title": "Scalable Systems for Business Transformation",
+    "subtitle": "Build robust enterprise systems that streamline operations, enhance efficiency, and drive innovation across your organization.",
+    "capabilities": {
+        "title": "Enterprise Solutions",
+        "items": [
+            {
+                "icon": "fas fa-rocket",
+                "iconStyle": "background: rgba(0, 255, 157, 0.15); color: var(--accent-green);",
+                "title": "MVP Development",
+                "description": "Rapid development of Minimum Viable Products for startups and new initiatives.",
+                "features": [
+                    "Startup Incubation",
+                    "Proof of Concept Development",
+                    "Market Validation",
+                    "Investor-ready Products"
+                ]
+            },
+            {
+                "icon": "fas fa-cogs",
+                "iconStyle": "background: rgba(0, 255, 157, 0.15); color: var(--accent-green);",
+                "title": "Business Process Automation",
+                "description": "Automate repetitive tasks and workflows to increase efficiency.",
+                "features": [
+                    "Workflow Automation",
+                    "RPA Solutions",
+                    "Document Processing",
+                    "Task Automation"
+                ]
+            },
+            {
+                "icon": "fas fa-chart-network",
+                "iconStyle": "background: rgba(0, 255, 157, 0.15); color: var(--accent-green);",
+                "title": "Custom ERP/CRM Systems",
+                "description": "Tailored enterprise resource planning and customer relationship management systems.",
+                "features": [
+                    "Custom ERP Development",
+                    "CRM Implementation",
+                    "Supply Chain Management",
+                    "Inventory Systems"
+                ]
+            },
+            {
+                "icon": "fas fa-sync-alt",
+                "iconStyle": "background: rgba(0, 255, 157, 0.15); color: var(--accent-green);",
+                "title": "Legacy System Modernization",
+                "description": "Modernize and migrate legacy systems to cloud-native architectures.",
+                "features": [
+                    "System Migration",
+                    "Cloud Transformation",
+                    "API Modernization",
+                    "Database Migration"
+                ]
+            },
+            {
+                "icon": "fas fa-database",
+                "iconStyle": "background: rgba(0, 255, 157, 0.15); color: var(--accent-green);",
+                "title": "Data Management Solutions",
+                "description": "Comprehensive data management and analytics platforms.",
+                "features": [
+                    "Data Warehousing",
+                    "Business Intelligence",
+                    "ETL Pipeline Development",
+                    "Data Governance"
+                ]
+            },
+            {
+                "icon": "fas fa-shield-alt",
+                "iconStyle": "background: rgba(0, 255, 157, 0.15); color: var(--accent-green);",
+                "title": "Enterprise Security",
+                "description": "End-to-end security solutions for enterprise systems.",
+                "features": [
+                    "Security Architecture",
+                    "Compliance Implementation",
+                    "Data Encryption",
+                    "Access Control Systems"
+                ]
+            }
+        ]
+    },
+    "workflow": {
+        "title": "Enterprise Implementation Process",
+        "steps": [
+            {
+                "number": "1",
+                "title": "Business Analysis",
+                "description": "Comprehensive analysis of business processes, requirements, and goals."
+            },
+            {
+                "number": "2",
+                "title": "Solution Architecture",
+                "description": "Design scalable architecture and select appropriate technologies."
+            },
+            {
+                "number": "3",
+                "title": "Development & Integration",
+                "description": "Build and integrate systems with existing enterprise infrastructure."
+            },
+            {
+                "number": "4",
+                "title": "Testing & Quality Assurance",
+                "description": "Rigorous testing for performance, security, and reliability."
+            },
+            {
+                "number": "5",
+                "title": "Deployment & Training",
+                "description": "Production deployment and comprehensive user training."
+            }
+        ]
+    }
+}

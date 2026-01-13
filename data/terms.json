@@ -1,0 +1,37 @@
+{
+    "type": "generic",
+    "category": "Terms of Service",
+    "icon": "fas fa-file-contract",
+    "title": "Terms of Service",
+    "subtitle": "Terms governing the use of our services.",
+    "content": [
+        {
+            "title": "Acceptance of Terms",
+            "paragraphs": [
+                "By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement.",
+                "If you do not agree to abide by these terms, please do not use this site or our services."
+            ]
+        },
+        {
+            "title": "Service Description",
+            "paragraphs": [
+                "Zoon.ai provides AI and software development services as described on our website. Specific terms for each project are outlined in separate service agreements.",
+                "We reserve the right to modify or discontinue any service at any time without prior notice."
+            ]
+        },
+        {
+            "title": "Intellectual Property",
+            "paragraphs": [
+                "All content on this website, including text, graphics, logos, and software, is the property of Zoon.ai and is protected by intellectual property laws.",
+                "Client deliverables are subject to the terms outlined in individual project agreements."
+            ]
+        },
+        {
+            "title": "Limitation of Liability",
+            "paragraphs": [
+                "Zoon.ai shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the services.",
+                "Our total liability in any matter arising out of or in connection with this agreement is limited to the amount paid by you for the services."
+            ]
+        }
+    ]
+}

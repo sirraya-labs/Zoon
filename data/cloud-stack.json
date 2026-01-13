@@ -1,0 +1,167 @@
+{
+    "type": "tech",
+    "category": "Cloud & Data Infrastructure",
+    "title": "Cloud & Data Technology Stack",
+    "subtitle": "Scalable infrastructure and data solutions for enterprise-grade applications.",
+    "sections": {
+        "title": "Cloud & Data Technologies",
+        "items": [
+            {
+                "icon": "fab fa-aws",
+                "title": "Cloud Platforms",
+                "items": [
+                    {
+                        "name": "Amazon Web Services",
+                        "description": "Comprehensive cloud services"
+                    },
+                    {
+                        "name": "Microsoft Azure",
+                        "description": "Enterprise cloud platform"
+                    },
+                    {
+                        "name": "Google Cloud Platform",
+                        "description": "AI-first cloud services"
+                    },
+                    {
+                        "name": "IBM Cloud",
+                        "description": "Hybrid cloud solutions"
+                    },
+                    {
+                        "name": "Oracle Cloud",
+                        "description": "Enterprise applications"
+                    }
+                ]
+            },
+            {
+                "icon": "fas fa-database",
+                "title": "Big Data & Analytics",
+                "items": [
+                    {
+                        "name": "Apache Spark",
+                        "description": "Unified analytics engine"
+                    },
+                    {
+                        "name": "Apache Kafka",
+                        "description": "Distributed event streaming"
+                    },
+                    {
+                        "name": "Apache Hadoop",
+                        "description": "Distributed processing"
+                    },
+                    {
+                        "name": "Snowflake",
+                        "description": "Cloud data platform"
+                    },
+                    {
+                        "name": "Databricks",
+                        "description": "Data intelligence platform"
+                    }
+                ]
+            },
+            {
+                "icon": "fas fa-warehouse",
+                "title": "Data Warehousing",
+                "items": [
+                    {
+                        "name": "Amazon Redshift",
+                        "description": "Cloud data warehouse"
+                    },
+                    {
+                        "name": "Google BigQuery",
+                        "description": "Serverless data warehouse"
+                    },
+                    {
+                        "name": "Azure Synapse",
+                        "description": "Analytics service"
+                    },
+                    {
+                        "name": "Snowflake",
+                        "description": "Cloud data platform"
+                    },
+                    {
+                        "name": "Teradata",
+                        "description": "Enterprise analytics"
+                    }
+                ]
+            },
+            {
+                "icon": "fas fa-stream",
+                "title": "Data Pipelines",
+                "items": [
+                    {
+                        "name": "Apache Airflow",
+                        "description": "Workflow orchestration"
+                    },
+                    {
+                        "name": "Apache NiFi",
+                        "description": "Data flow automation"
+                    },
+                    {
+                        "name": "dbt",
+                        "description": "Data transformation"
+                    },
+                    {
+                        "name": "Fivetran",
+                        "description": "Automated data integration"
+                    },
+                    {
+                        "name": "Stitch",
+                        "description": "ETL service"
+                    }
+                ]
+            },
+            {
+                "icon": "fas fa-chart-bar",
+                "title": "Business Intelligence",
+                "items": [
+                    {
+                        "name": "Tableau",
+                        "description": "Data visualization"
+                    },
+                    {
+                        "name": "Power BI",
+                        "description": "Business analytics"
+                    },
+                    {
+                        "name": "Looker",
+                        "description": "Business intelligence"
+                    },
+                    {
+                        "name": "Qlik",
+                        "description": "Data analytics platform"
+                    },
+                    {
+                        "name": "Metabase",
+                        "description": "Open-source BI"
+                    }
+                ]
+            },
+            {
+                "icon": "fas fa-shield-alt",
+                "title": "Cloud Security",
+                "items": [
+                    {
+                        "name": "AWS Security Hub",
+                        "description": "Security management"
+                    },
+                    {
+                        "name": "Azure Security Center",
+                        "description": "Unified security management"
+                    },
+                    {
+                        "name": "Google Cloud Security",
+                        "description": "Security controls"
+                    },
+                    {
+                        "name": "Prisma Cloud",
+                        "description": "Cloud security platform"
+                    },
+                    {
+                        "name": "Wiz",
+                        "description": "Cloud security"
+                    }
+                ]
+            }
+        ]
+    }
+}

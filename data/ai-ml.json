@@ -1,0 +1,116 @@
+{
+    "type": "service",
+    "category": "AI & Machine Learning",
+    "icon": "fas fa-brain",
+    "badgeStyle": "background: rgba(157, 78, 221, 0.2); color: var(--accent-purple);",
+    "titleStyle": "background: linear-gradient(to right, var(--accent-purple), var(--accent-cyan)); -webkit-background-clip: text; background-clip: text;",
+    "title": "Transform Your Business with Intelligent AI Solutions",
+    "subtitle": "We build custom AI systems that learn, adapt, and optimize—delivering measurable business impact through cutting-edge machine learning and artificial intelligence.",
+    "capabilities": {
+        "title": "AI & ML Capabilities",
+        "items": [
+            {
+                "icon": "fas fa-robot",
+                "iconStyle": "background: rgba(157, 78, 221, 0.15); color: var(--accent-purple);",
+                "title": "Custom AI Model Development",
+                "description": "Build proprietary AI models tailored to your specific business needs, data, and objectives.",
+                "features": [
+                    "Predictive Analytics",
+                    "Recommendation Systems",
+                    "Anomaly Detection",
+                    "Time Series Forecasting"
+                ]
+            },
+            {
+                "icon": "fas fa-language",
+                "iconStyle": "background: rgba(157, 78, 221, 0.15); color: var(--accent-purple);",
+                "title": "Generative AI & LLMs",
+                "description": "Leverage large language models for content generation, chatbots, and intelligent automation.",
+                "features": [
+                    "OpenAI GPT Integration",
+                    "Custom Chatbot Development",
+                    "Content Generation Systems",
+                    "Document Analysis"
+                ]
+            },
+            {
+                "icon": "fas fa-eye",
+                "iconStyle": "background: rgba(157, 78, 221, 0.15); color: var(--accent-purple);",
+                "title": "Computer Vision",
+                "description": "Extract insights from visual data with advanced image and video analysis systems.",
+                "features": [
+                    "Object Detection & Recognition",
+                    "Facial Recognition Systems",
+                    "Image Classification",
+                    "Video Analytics"
+                ]
+            },
+            {
+                "icon": "fas fa-cogs",
+                "iconStyle": "background: rgba(157, 78, 221, 0.15); color: var(--accent-purple);",
+                "title": "AI-Powered Automation",
+                "description": "Automate complex business processes with intelligent workflow automation.",
+                "features": [
+                    "Process Automation",
+                    "Intelligent Document Processing",
+                    "Customer Service Automation",
+                    "Supply Chain Optimization"
+                ]
+            },
+            {
+                "icon": "fas fa-chart-line",
+                "iconStyle": "background: rgba(157, 78, 221, 0.15); color: var(--accent-purple);",
+                "title": "Predictive Analytics",
+                "description": "Forecast trends, behaviors, and outcomes with advanced predictive modeling.",
+                "features": [
+                    "Sales Forecasting",
+                    "Customer Churn Prediction",
+                    "Risk Assessment Models",
+                    "Demand Planning"
+                ]
+            },
+            {
+                "icon": "fas fa-database",
+                "iconStyle": "background: rgba(157, 78, 221, 0.15); color: var(--accent-purple);",
+                "title": "MLOps & Infrastructure",
+                "description": "Build scalable, production-ready AI infrastructure with robust MLOps pipelines.",
+                "features": [
+                    "Model Deployment & Serving",
+                    "Continuous Training Pipelines",
+                    "Model Monitoring & Governance",
+                    "Scalable Inference Systems"
+                ]
+            }
+        ]
+    },
+    "workflow": {
+        "title": "Our AI Development Process",
+        "steps": [
+            {
+                "number": "1",
+                "title": "Discovery & Problem Framing",
+                "description": "We work closely with you to understand your business challenges, define success metrics, and identify AI opportunities."
+            },
+            {
+                "number": "2",
+                "title": "Data Strategy & Preparation",
+                "description": "We assess your data landscape, clean and prepare data, and create robust data pipelines for model training."
+            },
+            {
+                "number": "3",
+                "title": "Model Development & Training",
+                "description": "Our data scientists develop and train custom models, iterating until performance meets your business objectives."
+            },
+            {
+                "number": "4",
+                "title": "Deployment & Integration",
+                "description": "We deploy models into production with robust APIs and integrate seamlessly with your existing systems."
+            },
+            {
+                "number": "5",
+                "title": "Monitoring & Optimization",
+                "description": "Continuous monitoring ensures model performance, with regular updates and optimization for sustained business value."
+            }
+        ]
+    }
+}

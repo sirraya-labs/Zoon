@@ -1,0 +1,49 @@
+{
+    "type": "about",
+    "title": "Engineering the Intelligent Future",
+    "subtitle": "Zoon.ai combines academic-grade AI research with industrial-strength engineering to build deployable, competitive intelligence solutions.",
+    "mission": [
+        "To democratize access to cutting-edge artificial intelligence by building practical, deployable solutions that solve real business problems. We believe AI should be accessible, understandable, and valuable for every organization.",
+        "Founded by AI researchers and software engineers from leading tech companies and academic institutions, Zoon.ai bridges the gap between theoretical AI research and practical business applications."
+    ],
+    "values": [
+        {
+            "title": "Innovation with Purpose",
+            "description": "We build AI solutions that deliver tangible business value, not just technical demonstrations."
+        },
+        {
+            "title": "Technical Excellence",
+            "description": "Our code is production-ready, scalable, and maintainable from day one."
+        },
+        {
+            "title": "Client Partnership",
+            "description": "We work as an extension of your team, understanding your business deeply."
+        },
+        {
+            "title": "Ethical AI",
+            "description": "We prioritize transparency, fairness, and security in all our AI implementations."
+        }
+    ],
+    "team": [
+        {
+            "name": "Dr. Alex Chen",
+            "role": "Chief AI Scientist",
+            "bio": "PhD in Machine Learning from Stanford. Former AI researcher at Google Brain."
+        },
+        {
+            "name": "Sarah Johnson",
+            "role": "Head of Engineering",
+            "bio": "15+ years building scalable systems. Former tech lead at Amazon AWS."
+        },
+        {
+            "name": "Marcus Rodriguez",
+            "role": "Creative Director",
+            "bio": "Award-winning designer with expertise in AI-enhanced user experiences."
+        },
+        {
+            "name": "Dr. Maya Patel",
+            "role": "Data Science Lead",
+            "bio": "PhD in Data Science from MIT. Specializes in predictive analytics."
+        }
+    ]
+}

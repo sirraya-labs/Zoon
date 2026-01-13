@@ -1,0 +1,212 @@
+{
+    "navigation": {
+        "desktop": [
+            {
+                "type": "link",
+                "text": "Home",
+                "icon": "fas fa-home",
+                "href": "#home",
+                "page": "home"
+            },
+            {
+                "type": "dropdown",
+                "text": "Services",
+                "icon": "fas fa-cube",
+                "items": [
+                    {
+                        "text": "AI & Machine Learning",
+                        "icon": "fas fa-brain",
+                        "href": "#ai-ml",
+                        "page": "ai-ml"
+                    },
+                    {
+                        "text": "Modern Web & Mobile",
+                        "icon": "fas fa-code",
+                        "href": "#web-mobile",
+                        "page": "web-mobile"
+                    },
+                    {
+                        "text": "Enterprise Solutions",
+                        "icon": "fas fa-server",
+                        "href": "#enterprise",
+                        "page": "enterprise"
+                    },
+                    {
+                        "text": "Creative & UX Design",
+                        "icon": "fas fa-paint-brush",
+                        "href": "#design",
+                        "page": "design"
+                    }
+                ]
+            },
+            {
+                "type": "dropdown",
+                "text": "Technologies",
+                "icon": "fas fa-microchip",
+                "items": [
+                    {
+                        "text": "AI/ML Stack",
+                        "icon": "fas fa-robot",
+                        "href": "#ai-stack",
+                        "page": "ai-stack"
+                    },
+                    {
+                        "text": "Web Stack",
+                        "icon": "fas fa-globe",
+                        "href": "#web-stack",
+                        "page": "web-stack"
+                    },
+                    {
+                        "text": "Cloud & Data",
+                        "icon": "fas fa-cloud",
+                        "href": "#cloud-stack",
+                        "page": "cloud-stack"
+                    }
+                ]
+            },
+            {
+                "type": "link",
+                "text": "Case Studies",
+                "icon": "fas fa-chart-line",
+                "href": "#case-studies",
+                "page": "case-studies"
+            },
+            {
+                "type": "link",
+                "text": "About",
+                "icon": "fas fa-users",
+                "href": "#about",
+                "page": "about"
+            },
+            {
+                "type": "link",
+                "text": "Contact",
+                "icon": "fas fa-envelope",
+                "href": "#contact",
+                "page": "contact"
+            }
+        ]
+    },
+    "footer": {
+        "tagline": "Engineering the Intelligent Future with AI-first solutions that redefine what's possible in business and technology.",
+        "social": [
+            {
+                "icon": "fab fa-twitter",
+                "url": "https://twitter.com"
+            },
+            {
+                "icon": "fab fa-linkedin-in",
+                "url": "https://linkedin.com"
+            },
+            {
+                "icon": "fab fa-github",
+                "url": "https://github.com"
+            },
+            {
+                "icon": "fab fa-dribbble",
+                "url": "https://dribbble.com"
+            }
+        ],
+        "columns": [
+            {
+                "title": "Services",
+                "links": [
+                    {
+                        "text": "AI & Machine Learning",
+                        "href": "#ai-ml",
+                        "page": "ai-ml"
+                    },
+                    {
+                        "text": "Web Development",
+                        "href": "#web-mobile",
+                        "page": "web-mobile"
+                    },
+                    {
+                        "text": "Enterprise Solutions",
+                        "href": "#enterprise",
+                        "page": "enterprise"
+                    },
+                    {
+                        "text": "UX/UI Design",
+                        "href": "#design",
+                        "page": "design"
+                    }
+                ]
+            },
+            {
+                "title": "Company",
+                "links": [
+                    {
+                        "text": "About Us",
+                        "href": "#about",
+                        "page": "about"
+                    },
+                    {
+                        "text": "Case Studies",
+                        "href": "#case-studies",
+                        "page": "case-studies"
+                    },
+                    {
+                        "text": "Careers",
+                        "href": "#careers",
+                        "page": "careers"
+                    },
+                    {
+                        "text": "Blog",
+                        "href": "#blog",
+                        "page": "blog"
+                    },
+                    {
+                        "text": "Contact",
+                        "href": "#contact",
+                        "page": "contact"
+                    }
+                ]
+            },
+            {
+                "title": "Resources",
+                "links": [
+                    {
+                        "text": "AI Glossary",
+                        "href": "#glossary",
+                        "page": "glossary"
+                    },
+                    {
+                        "text": "Tech Stack",
+                        "href": "#ai-stack",
+                        "page": "ai-stack"
+                    },
+                    {
+                        "text": "White Papers",
+                        "href": "#whitepapers",
+                        "page": "whitepapers"
+                    },
+                    {
+                        "text": "Support",
+                        "href": "#support",
+                        "page": "support"
+                    }
+                ]
+            }
+        ],
+        "copyright": "Zoon.ai. All rights reserved.",
+        "legal": [
+            {
+                "text": "Privacy Policy",
+                "href": "#privacy",
+                "page": "privacy"
+            },
+            {
+                "text": "Terms of Service",
+                "href": "#terms",
+                "page": "terms"
+            },
+            {
+                "text": "Cookie Policy",
+                "href": "#cookies",
+                "page": "cookies"
+            }
+        ],
+        "footerNote": "Engineered with ❤️ and advanced AI"
+    }
+}

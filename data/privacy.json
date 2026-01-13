@@ -1,0 +1,37 @@
+{
+    "type": "generic",
+    "category": "Privacy Policy",
+    "icon": "fas fa-shield-alt",
+    "title": "Privacy Policy",
+    "subtitle": "How we protect and handle your data.",
+    "content": [
+        {
+            "title": "Information We Collect",
+            "paragraphs": [
+                "We collect information you provide directly to us, such as when you fill out a contact form, request information, or communicate with us.",
+                "This may include your name, email address, company name, phone number, and any other information you choose to provide."
+            ]
+        },
+        {
+            "title": "How We Use Your Information",
+            "paragraphs": [
+                "We use the information we collect to provide, maintain, and improve our services, to communicate with you, and to develop new services.",
+                "We may also use your information to send you technical notices, updates, security alerts, and support messages."
+            ]
+        },
+        {
+            "title": "Data Security",
+            "paragraphs": [
+                "We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.",
+                "However, no method of transmission over the Internet or electronic storage is 100% secure, so we cannot guarantee absolute security."
+            ]
+        },
+        {
+            "title": "Your Rights",
+            "paragraphs": [
+                "You have the right to access, correct, or delete your personal information. You may also have the right to restrict or object to certain processing of your data.",
+                "To exercise these rights, please contact us using the information provided in the Contact section."
+            ]
+        }
+    ]
+}
