@@ -8,24 +8,29 @@ class ZoonApp {
     }
 
     async init() {
-        // Show loading animation
-        this.showLoader();
-        
-        // Load navigation data
-        await this.loadNavigation();
-        
-        // Set up event listeners
-        this.setupEventListeners();
-        
-        // Initialize visual effects
-        this.initBackground();
-        this.createParticles();
-        
-        // Load home page
-        await this.loadPage('home');
-        
-        // Hide loader
-        this.hideLoader();
+        try {
+            // Show loading animation
+            this.showLoader();
+            
+            // Load navigation data
+            await this.loadNavigation();
+            
+            // Set up event listeners
+            this.setupEventListeners();
+            
+            // Initialize visual effects
+            this.initBackground();
+            this.createParticles();
+            
+            // Load home page
+            await this.loadPage('home');
+            
+            // Hide loader
+            this.hideLoader();
+        } catch (error) {
+            console.error('Application initialization failed:', error);
+            this.showErrorPage('init');
+        }
     }
 
     showLoader() {
@@ -35,6 +40,7 @@ class ZoonApp {
         if (loader && progressBar) {
             loader.classList.remove('hidden');
             loader.style.display = 'flex';
+            loader.setAttribute('aria-hidden', 'false');
             
             // Simulate loading progress
             let progress = 0;
@@ -55,6 +61,7 @@ class ZoonApp {
         if (loader) {
             setTimeout(() => {
                 loader.classList.add('hidden');
+                loader.setAttribute('aria-hidden', 'true');
                 setTimeout(() => {
                     loader.style.display = 'none';
                 }, 500);
@@ -65,6 +72,7 @@ class ZoonApp {
     async loadNavigation() {
         try {
             const response = await fetch('data/pages.json');
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const data = await response.json();
             this.pages = data;
             this.renderNavigation(data.navigation);
@@ -99,16 +107,17 @@ class ZoonApp {
         
         // Add CTA to mobile nav
         mobileNav.innerHTML += `
-            <button class="cta-button" style="margin-top: 30px; width: 100%;" data-page="contact">
-                <i class="fas fa-rocket"></i> Start Project
+            <button class="cta-button" style="margin-top: 30px; width: 100%;" data-page="contact" aria-label="Start new project">
+                <i class="fas fa-rocket" aria-hidden="true"></i> Start Project
             </button>
         `;
     }
 
     createNavLink(item) {
+        const isActive = this.currentPage === item.page ? ' active' : '';
         return `
-            <a href="#" class="nav-link" data-page="${item.page}">
-                ${item.icon ? `<i class="${item.icon}"></i>` : ''}
+            <a href="#" class="nav-link${isActive}" data-page="${item.page}" aria-label="${item.text}">
+                ${item.icon ? `<i class="${item.icon}" aria-hidden="true"></i>` : ''}
                 ${item.text}
             </a>
         `;
@@ -117,14 +126,14 @@ class ZoonApp {
     createDropdown(item) {
         return `
             <div class="dropdown">
-                <a href="#" class="nav-link">
-                    ${item.icon ? `<i class="${item.icon}"></i>` : ''}
-                    ${item.text} <i class="fas fa-chevron-down"></i>
+                <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
+                    ${item.icon ? `<i class="${item.icon}" aria-hidden="true"></i>` : ''}
+                    ${item.text} <i class="fas fa-chevron-down" aria-hidden="true"></i>
                 </a>
-                <div class="dropdown-content">
+                <div class="dropdown-content" role="menu">
                     ${item.items.map(subItem => `
-                        <a href="#" data-page="${subItem.page}">
-                            <i class="${subItem.icon}"></i> ${subItem.text}
+                        <a href="#" data-page="${subItem.page}" role="menuitem" tabindex="-1">
+                            <i class="${subItem.icon}" aria-hidden="true"></i> ${subItem.text}
                         </a>
                     `).join('')}
                 </div>
@@ -138,15 +147,15 @@ class ZoonApp {
 
     createMobileDropdown(item) {
         return `
-            <div class="dropdown">
-                <a href="#" class="nav-link">
-                    ${item.icon ? `<i class="${item.icon}"></i>` : ''}
-                    ${item.text} <i class="fas fa-chevron-down"></i>
+            <div class="dropdown mobile-dropdown">
+                <a href="#" class="nav-link mobile-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    ${item.icon ? `<i class="${item.icon}" aria-hidden="true"></i>` : ''}
+                    ${item.text} <i class="fas fa-chevron-down mobile-chevron" aria-hidden="true"></i>
                 </a>
-                <div class="dropdown-content">
+                <div class="dropdown-content mobile-dropdown-content" role="menu">
                     ${item.items.map(subItem => `
-                        <a href="#" data-page="${subItem.page}">
-                            <i class="${subItem.icon}"></i> ${subItem.text}
+                        <a href="#" data-page="${subItem.page}" class="mobile-dropdown-item" role="menuitem" tabindex="-1">
+                            <i class="${subItem.icon}" aria-hidden="true"></i> ${subItem.text}
                         </a>
                     `).join('')}
                 </div>
@@ -161,12 +170,12 @@ class ZoonApp {
         footer.innerHTML = `
             <div class="footer-content">
                 <div class="footer-brand">
-                    <div class="footer-logo">Zoon.ai</div>
+                    <div class="footer-logo" aria-label="Zoon.ai">Zoon.ai</div>
                     <p class="footer-tagline">${footerData.tagline || 'Engineering Intelligent Solutions'}</p>
-                    <div class="social-links">
+                    <div class="social-links" role="list">
                         ${(footerData.social || []).map(social => `
-                            <a href="${social.url}" class="social-link" target="_blank">
-                                <i class="${social.icon}"></i>
+                            <a href="${social.url}" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="${social.name || social.icon.replace('fab fa-', '')}">
+                                <i class="${social.icon}" aria-hidden="true"></i>
                             </a>
                         `).join('')}
                     </div>
@@ -176,9 +185,9 @@ class ZoonApp {
                     ${(footerData.columns || []).map(column => `
                         <div class="footer-column">
                             <h4>${column.title}</h4>
-                            <ul>
+                            <ul role="list">
                                 ${(column.links || []).map(link => `
-                                    <li><a href="#" data-page="${link.page}">${link.text}</a></li>
+                                    <li><a href="#" data-page="${link.page}" aria-label="${link.text}">${link.text}</a></li>
                                 `).join('')}
                             </ul>
                         </div>
@@ -191,7 +200,7 @@ class ZoonApp {
                 ${footerData.legal ? `
                 <p style="margin-top: 10px; font-size: 13px;">
                     ${footerData.legal.map(link => `
-                        <a href="#" data-page="${link.page}" style="color: var(--text-muted); margin-right: 20px;">${link.text}</a>
+                        <a href="#" data-page="${link.page}" style="color: var(--text-muted); margin-right: 20px;" aria-label="${link.text}">${link.text}</a>
                     `).join('')}
                 </p>
                 ` : ''}
@@ -287,20 +296,20 @@ class ZoonApp {
             footer.innerHTML = `
                 <div class="footer-content">
                     <div class="footer-brand">
-                        <div class="footer-logo">Zoon.ai</div>
+                        <div class="footer-logo" aria-label="Zoon.ai">Zoon.ai</div>
                         <p class="footer-tagline">Engineering the Intelligent Future with AI-first solutions</p>
-                        <div class="social-links">
-                            <a href="https://twitter.com" class="social-link" target="_blank">
-                                <i class="fab fa-twitter"></i>
+                        <div class="social-links" role="list">
+                            <a href="https://twitter.com" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                                <i class="fab fa-twitter" aria-hidden="true"></i>
                             </a>
-                            <a href="https://linkedin.com" class="social-link" target="_blank">
-                                <i class="fab fa-linkedin-in"></i>
+                            <a href="https://linkedin.com" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
                             </a>
-                            <a href="https://github.com" class="social-link" target="_blank">
-                                <i class="fab fa-github"></i>
+                            <a href="https://github.com" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                                <i class="fab fa-github" aria-hidden="true"></i>
                             </a>
-                            <a href="https://dribbble.com" class="social-link" target="_blank">
-                                <i class="fab fa-dribbble"></i>
+                            <a href="https://dribbble.com" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Dribbble">
+                                <i class="fab fa-dribbble" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
@@ -308,30 +317,30 @@ class ZoonApp {
                     <div class="footer-links">
                         <div class="footer-column">
                             <h4>Services</h4>
-                            <ul>
-                                <li><a href="#" data-page="ai-ml">AI & Machine Learning</a></li>
-                                <li><a href="#" data-page="web-mobile">Web Development</a></li>
-                                <li><a href="#" data-page="enterprise">Enterprise Solutions</a></li>
-                                <li><a href="#" data-page="design">UX/UI Design</a></li>
+                            <ul role="list">
+                                <li><a href="#" data-page="ai-ml" aria-label="AI & Machine Learning">AI & Machine Learning</a></li>
+                                <li><a href="#" data-page="web-mobile" aria-label="Web Development">Web Development</a></li>
+                                <li><a href="#" data-page="enterprise" aria-label="Enterprise Solutions">Enterprise Solutions</a></li>
+                                <li><a href="#" data-page="design" aria-label="UX/UI Design">UX/UI Design</a></li>
                             </ul>
                         </div>
                         
                         <div class="footer-column">
                             <h4>Company</h4>
-                            <ul>
-                                <li><a href="#" data-page="about">About Us</a></li>
-                                <li><a href="#" data-page="case-studies">Case Studies</a></li>
-                                <li><a href="#" data-page="contact">Contact</a></li>
+                            <ul role="list">
+                                <li><a href="#" data-page="about" aria-label="About Us">About Us</a></li>
+                                <li><a href="#" data-page="case-studies" aria-label="Case Studies">Case Studies</a></li>
+                                <li><a href="#" data-page="contact" aria-label="Contact">Contact</a></li>
                             </ul>
                         </div>
                         
                         <div class="footer-column">
                             <h4>Resources</h4>
-                            <ul>
-                                <li><a href="#" data-page="ai-stack">Tech Stack</a></li>
-                                <li><a href="#" data-page="privacy">Privacy Policy</a></li>
-                                <li><a href="#" data-page="terms">Terms of Service</a></li>
-                                <li><a href="#" data-page="cookies">Cookie Policy</a></li>
+                            <ul role="list">
+                                <li><a href="#" data-page="ai-stack" aria-label="Tech Stack">Tech Stack</a></li>
+                                <li><a href="#" data-page="privacy" aria-label="Privacy Policy">Privacy Policy</a></li>
+                                <li><a href="#" data-page="terms" aria-label="Terms of Service">Terms of Service</a></li>
+                                <li><a href="#" data-page="cookies" aria-label="Cookie Policy">Cookie Policy</a></li>
                             </ul>
                         </div>
                     </div>
@@ -340,9 +349,9 @@ class ZoonApp {
                 <div class="copyright">
                     <p>&copy; ${new Date().getFullYear()} Zoon.ai. All rights reserved.</p>
                     <p style="margin-top: 10px; font-size: 13px;">
-                        <a href="#" data-page="privacy" style="color: var(--text-muted); margin-right: 20px;">Privacy Policy</a>
-                        <a href="#" data-page="terms" style="color: var(--text-muted); margin-right: 20px;">Terms of Service</a>
-                        <a href="#" data-page="cookies" style="color: var(--text-muted); margin-right: 20px;">Cookie Policy</a>
+                        <a href="#" data-page="privacy" style="color: var(--text-muted); margin-right: 20px;" aria-label="Privacy Policy">Privacy Policy</a>
+                        <a href="#" data-page="terms" style="color: var(--text-muted); margin-right: 20px;" aria-label="Terms of Service">Terms of Service</a>
+                        <a href="#" data-page="cookies" style="color: var(--text-muted); margin-right: 20px;" aria-label="Cookie Policy">Cookie Policy</a>
                     </p>
                     <p style="margin-top: 10px; font-size: 12px;">Engineered with ❤️ and advanced AI</p>
                 </div>
@@ -358,10 +367,12 @@ class ZoonApp {
         if (mobileToggle && mobileNav) {
             mobileToggle.addEventListener('click', (e) => {
                 e.stopPropagation();
-                mobileNav.classList.toggle('active');
-                mobileToggle.innerHTML = mobileNav.classList.contains('active') 
-                    ? '<i class="fas fa-times"></i>' 
-                    : '<i class="fas fa-bars"></i>';
+                const isActive = mobileNav.classList.toggle('active');
+                mobileToggle.innerHTML = isActive 
+                    ? '<i class="fas fa-times" aria-hidden="true"></i>' 
+                    : '<i class="fas fa-bars" aria-hidden="true"></i>';
+                mobileToggle.setAttribute('aria-expanded', isActive);
+                mobileToggle.setAttribute('aria-label', isActive ? 'Close navigation menu' : 'Open navigation menu');
             });
         }
         
@@ -372,7 +383,27 @@ class ZoonApp {
                 !mobileToggle.contains(e.target) && 
                 mobileNav.classList.contains('active')) {
                 mobileNav.classList.remove('active');
-                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                mobileToggle.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
+                mobileToggle.setAttribute('aria-expanded', 'false');
+                mobileToggle.setAttribute('aria-label', 'Open navigation menu');
+            }
+        });
+        
+        // Mobile dropdown toggle
+        document.addEventListener('click', (e) => {
+            const dropdownToggle = e.target.closest('.mobile-dropdown-toggle');
+            if (dropdownToggle && this.isMobile) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const dropdown = dropdownToggle.closest('.dropdown');
+                const dropdownContent = dropdown.querySelector('.dropdown-content');
+                const chevron = dropdownToggle.querySelector('.mobile-chevron');
+                const isActive = dropdownContent.classList.toggle('active');
+                
+                chevron.classList.toggle('fa-chevron-down', !isActive);
+                chevron.classList.toggle('fa-chevron-up', isActive);
+                dropdownToggle.setAttribute('aria-expanded', isActive);
             }
         });
         
@@ -389,7 +420,11 @@ class ZoonApp {
                 // Close mobile nav if open
                 if (mobileNav && mobileNav.classList.contains('active')) {
                     mobileNav.classList.remove('active');
-                    if (mobileToggle) mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    if (mobileToggle) {
+                        mobileToggle.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
+                        mobileToggle.setAttribute('aria-expanded', 'false');
+                        mobileToggle.setAttribute('aria-label', 'Open navigation menu');
+                    }
                 }
             }
             
@@ -402,20 +437,37 @@ class ZoonApp {
         });
         
         // Header scroll effect
+        let scrollTimer;
         window.addEventListener('scroll', () => {
             const header = document.getElementById('main-header');
             if (header) {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
+                clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(() => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                }, 10);
             }
         });
         
-        // Window resize
+        // Window resize with debounce
+        let resizeTimer;
         window.addEventListener('resize', () => {
-            this.isMobile = window.innerWidth < 992;
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                this.isMobile = window.innerWidth < 992;
+                // Close mobile nav on desktop
+                if (!this.isMobile && mobileNav && mobileNav.classList.contains('active')) {
+                    mobileNav.classList.remove('active');
+                    if (mobileToggle) {
+                        mobileToggle.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
+                        mobileToggle.setAttribute('aria-expanded', 'false');
+                        mobileToggle.setAttribute('aria-label', 'Open navigation menu');
+                    }
+                }
+            }, 250);
         });
         
         // Handle browser back/forward
@@ -424,9 +476,38 @@ class ZoonApp {
                 this.loadPage(event.state.page);
             }
         });
+        
+        // Escape key to close modals/dropdowns
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (mobileNav && mobileNav.classList.contains('active')) {
+                    mobileNav.classList.remove('active');
+                    if (mobileToggle) {
+                        mobileToggle.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
+                        mobileToggle.setAttribute('aria-expanded', 'false');
+                        mobileToggle.setAttribute('aria-label', 'Open navigation menu');
+                    }
+                }
+                
+                // Close all dropdowns
+                document.querySelectorAll('.dropdown-content.active').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                    const toggle = dropdown.closest('.dropdown').querySelector('.nav-link');
+                    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+                });
+                
+                // Close notifications
+                document.querySelectorAll('.notification.show').forEach(notification => {
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 300);
+                });
+            }
+        });
     }
 
     async loadPage(pageName) {
+        if (this.currentPage === pageName) return;
+        
         this.currentPage = pageName;
         
         // Update active nav link
@@ -436,7 +517,7 @@ class ZoonApp {
         const mainContent = document.getElementById('main-content');
         if (mainContent) {
             mainContent.innerHTML = `
-                <div style="text-align: center; padding: 100px 20px;">
+                <div style="text-align: center; padding: 100px 20px;" aria-live="polite">
                     <div class="loader-logo" style="font-size: 2rem; margin-bottom: 20px;">Loading...</div>
                     <div class="loader-bar" style="width: 200px;">
                         <div class="loader-progress"></div>
@@ -448,6 +529,7 @@ class ZoonApp {
         try {
             // Load page content from JSON
             const response = await fetch(`data/${pageName}.json`);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const pageData = await response.json();
             
             // Render the page
@@ -456,8 +538,14 @@ class ZoonApp {
             // Update browser history
             history.pushState({ page: pageName }, '', `#${pageName}`);
             
+            // Update document title
+            document.title = `${pageData.title || 'Zoon.ai'} - AI-First Software Engineering`;
+            
             // Initialize page-specific functionality
             this.initPageScripts(pageName);
+            
+            // Announce page change for screen readers
+            this.announcePageChange(pageData.title || pageName);
             
         } catch (error) {
             console.error(`Error loading page ${pageName}:`, error);
@@ -469,11 +557,15 @@ class ZoonApp {
         // Remove active class from all nav links
         document.querySelectorAll('.nav-link').forEach(link => {
             link.classList.remove('active');
+            link.setAttribute('aria-current', 'false');
         });
         
         // Add active class to current page link
         document.querySelectorAll(`[data-page="${pageName}"]`).forEach(link => {
-            link.classList.add('active');
+            if (link.classList.contains('nav-link')) {
+                link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
+            }
         });
     }
 
@@ -508,11 +600,15 @@ class ZoonApp {
         
         // Add fade-in animation
         setTimeout(() => {
-            const elements = mainContent.querySelectorAll('.service-card, .process-step, .ai-visual, .contact-container, .service-hero');
-            elements.forEach(el => {
+            const elements = mainContent.querySelectorAll('.service-card, .process-step, .ai-visual, .contact-container, .service-hero, .stat-item');
+            elements.forEach((el, index) => {
                 el.classList.add('fade-in');
+                el.style.animationDelay = `${index * 0.1}s`;
             });
         }, 100);
+        
+        // Initialize forms
+        this.initForms();
     }
 
     renderHomePage(data) {
@@ -521,21 +617,21 @@ class ZoonApp {
             <section class="hero" id="home">
                 <div class="page-container">
                     <div class="hero-content">
-                        <div class="hero-badge">
-                            <i class="fas fa-bolt"></i> ${data.hero.badge || 'AI-First Software Engineering'}
+                        <div class="hero-badge" aria-label="${data.hero.badge || 'AI-First Software Engineering'}">
+                            <i class="fas fa-bolt" aria-hidden="true"></i> ${data.hero.badge || 'AI-First Software Engineering'}
                         </div>
                         <h1 class="hero-title">${data.hero.title || 'Intelligent Systems for the Next Era of Business'}</h1>
                         <p class="hero-subtitle">${data.hero.subtitle || 'Transforming businesses with cutting-edge AI solutions'}</p>
                         
                         <div class="hero-cta-container">
-                            <button class="cta-button" data-page="contact">
-                                <i class="fas fa-rocket"></i> Start AI Project
+                            <button class="cta-button" data-page="contact" aria-label="Start AI project">
+                                <i class="fas fa-rocket" aria-hidden="true"></i> Start AI Project
                             </button>
-                            <button class="secondary-button" data-page="case-studies">
-                                <i class="fas fa-eye"></i> View Case Studies
+                            <button class="secondary-button" data-page="case-studies" aria-label="View case studies">
+                                <i class="fas fa-eye" aria-hidden="true"></i> View Case Studies
                             </button>
-                            <button class="secondary-button" data-page="about">
-                                <i class="fas fa-play-circle"></i> Watch Demo
+                            <button class="secondary-button" data-page="about" aria-label="Watch demo video">
+                                <i class="fas fa-play-circle" aria-hidden="true"></i> Watch Demo
                             </button>
                         </div>
                     </div>
@@ -543,12 +639,17 @@ class ZoonApp {
             </section>
             
             <!-- Stats Section -->
-            <section class="stats">
+            <section class="stats" aria-label="Company Statistics">
                 <div class="page-container">
                     <div class="stats-container">
-                        ${(data.stats || []).map(stat => `
+                        ${(data.stats || [
+                            { value: '200+', label: 'AI Projects Delivered' },
+                            { value: '99%', label: 'Client Satisfaction' },
+                            { value: '45%', label: 'Avg. Efficiency Gain' },
+                            { value: '4x', label: 'Avg. ROI for Clients' }
+                        ]).map(stat => `
                             <div class="stat-item">
-                                <div class="stat-number">${stat.value || '0'}</div>
+                                <div class="stat-number" aria-label="${stat.value}">${stat.value || '0'}</div>
                                 <div class="stat-label">${stat.label || 'Statistic'}</div>
                             </div>
                         `).join('')}
@@ -567,7 +668,7 @@ class ZoonApp {
                     <div class="services-grid">
                         ${(data.services?.items || []).map(service => `
                             <div class="service-card" id="${service.id || ''}">
-                                <div class="service-icon ${service.iconClass || ''}">
+                                <div class="service-icon ${service.iconClass || ''}" aria-hidden="true">
                                     <i class="${service.icon || 'fas fa-cube'}"></i>
                                 </div>
                                 <h3 class="service-title">${service.title || 'Service'}</h3>
@@ -575,8 +676,8 @@ class ZoonApp {
                                 <ul class="service-features">
                                     ${(service.features || []).map(feature => `<li>${feature}</li>`).join('')}
                                 </ul>
-                                <a href="#" class="service-link" data-page="${service.page || 'home'}">
-                                    ${service.linkText || 'Learn More'} <i class="fas fa-arrow-right"></i>
+                                <a href="#" class="service-link" data-page="${service.page || 'home'}" aria-label="Learn more about ${service.title || 'Service'}">
+                                    ${service.linkText || 'Learn More'} <i class="fas fa-arrow-right" aria-hidden="true"></i>
                                 </a>
                             </div>
                         `).join('')}
@@ -593,8 +694,8 @@ class ZoonApp {
                     </div>
                     
                     <div class="ai-showcase-content">
-                        <div class="ai-visual">
-                            <canvas id="neuralCanvas" class="neural-network"></canvas>
+                        <div class="ai-visual" aria-label="Neural network visualization">
+                            <canvas id="neuralCanvas" class="neural-network" role="img"></canvas>
                         </div>
                         
                         <div class="ai-details">
@@ -602,14 +703,14 @@ class ZoonApp {
                             ${(data.showcase?.details?.paragraphs || []).map(p => `<p>${p}</p>`).join('')}
                             
                             <h4 style="margin-top: 40px; color: var(--accent-cyan);">Core AI Technologies</h4>
-                            <div class="tech-stack">
+                            <div class="tech-stack" role="list">
                                 ${(data.showcase?.technologies || []).map(tech => `
-                                    <div class="tech-item">${tech}</div>
+                                    <div class="tech-item" role="listitem">${tech}</div>
                                 `).join('')}
                             </div>
                             
-                            <button class="cta-button" style="margin-top: 50px;" data-page="ai-stack">
-                                <i class="fas fa-robot"></i> Explore AI Technologies
+                            <button class="cta-button" style="margin-top: 50px;" data-page="ai-stack" aria-label="Explore AI technologies">
+                                <i class="fas fa-robot" aria-hidden="true"></i> Explore AI Technologies
                             </button>
                         </div>
                     </div>
@@ -627,7 +728,7 @@ class ZoonApp {
                     <div class="process-steps">
                         ${(data.process?.steps || []).map(step => `
                             <div class="process-step">
-                                <div class="step-number">${step.number || '01'}</div>
+                                <div class="step-number" aria-label="Step ${step.number || '01'}">${step.number || '01'}</div>
                                 <h3 class="step-title">${step.title || 'Step'}</h3>
                                 <p class="step-description">${step.description || 'Description'}</p>
                             </div>
@@ -647,15 +748,15 @@ class ZoonApp {
                     <div class="contact-container">
                         <div class="contact-form">
                             <h3>Start Your Project</h3>
-                            <form id="project-form">
+                            <form id="project-form" aria-label="Project inquiry form">
                                 <div class="form-group">
                                     <label class="form-label" for="name">Full Name</label>
-                                    <input type="text" id="name" class="form-input" placeholder="Enter your name" required>
+                                    <input type="text" id="name" class="form-input" placeholder="Enter your name" required aria-required="true">
                                 </div>
                                 
                                 <div class="form-group">
                                     <label class="form-label" for="email">Email Address</label>
-                                    <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+                                    <input type="email" id="email" class="form-input" placeholder="Enter your email" required aria-required="true">
                                 </div>
                                 
                                 <div class="form-group">
@@ -665,7 +766,7 @@ class ZoonApp {
                                 
                                 <div class="form-group">
                                     <label class="form-label" for="service">Primary Service Interest</label>
-                                    <select id="service" class="form-select">
+                                    <select id="service" class="form-select" aria-label="Select primary service interest">
                                         <option value="">Select a service</option>
                                         <option value="ai-ml">AI & Machine Learning</option>
                                         <option value="web">Modern Web & Mobile</option>
@@ -676,7 +777,7 @@ class ZoonApp {
                                 
                                 <div class="form-group">
                                     <label class="form-label" for="budget">Project Budget Range</label>
-                                    <select id="budget" class="form-select">
+                                    <select id="budget" class="form-select" aria-label="Select project budget range">
                                         <option value="">Select budget range</option>
                                         <option value="25-50">$25,000 - $50,000</option>
                                         <option value="50-100">$50,000 - $100,000</option>
@@ -687,11 +788,11 @@ class ZoonApp {
                                 
                                 <div class="form-group">
                                     <label class="form-label" for="message">Project Details</label>
-                                    <textarea id="message" class="form-textarea" placeholder="Describe your project, goals, and timeline..."></textarea>
+                                    <textarea id="message" class="form-textarea" placeholder="Describe your project, goals, and timeline..." aria-label="Project details"></textarea>
                                 </div>
                                 
-                                <button type="submit" class="cta-button" style="width: 100%;">
-                                    <i class="fas fa-paper-plane"></i> Submit Project Request
+                                <button type="submit" class="cta-button" style="width: 100%;" aria-label="Submit project request">
+                                    <i class="fas fa-paper-plane" aria-hidden="true"></i> Submit Project Request
                                 </button>
                             </form>
                         </div>
@@ -701,15 +802,15 @@ class ZoonApp {
                             
                             ${(data.contact?.methods || []).map(method => `
                                 <div class="contact-method">
-                                    <div class="contact-icon">
+                                    <div class="contact-icon" aria-hidden="true">
                                         <i class="${method.icon || 'fas fa-envelope'}"></i>
                                     </div>
                                     <div class="contact-details">
                                         <h4>${method.title || 'Contact Method'}</h4>
                                         ${(method.details || []).map(detail => `<p>${detail}</p>`).join('')}
                                         ${method.button ? `
-                                            <button class="secondary-button" style="margin-top: 15px;">
-                                                <i class="${method.button.icon || 'fas fa-calendar'}"></i> ${method.button.text || 'Learn More'}
+                                            <button class="secondary-button" style="margin-top: 15px;" aria-label="${method.button.text || 'Learn more'}">
+                                                <i class="${method.button.icon || 'fas fa-calendar'}" aria-hidden="true"></i> ${method.button.text || 'Learn More'}
                                             </button>
                                         ` : ''}
                                     </div>
@@ -728,7 +829,7 @@ class ZoonApp {
                 <div class="page-container">
                     <div class="service-hero-content">
                         <div class="service-hero-badge" style="${data.badgeStyle || ''}">
-                            <i class="${data.icon || 'fas fa-cube'}"></i> ${data.category || 'Service'}
+                            <i class="${data.icon || 'fas fa-cube'}" aria-hidden="true"></i> ${data.category || 'Service'}
                         </div>
                         <h1 class="service-hero-title" style="${data.titleStyle || ''}">${data.title || 'Service Title'}</h1>
                         <p class="service-hero-subtitle">${data.subtitle || 'Service description'}</p>
@@ -743,7 +844,7 @@ class ZoonApp {
                     <div class="services-grid">
                         ${(data.capabilities?.items || []).map(capability => `
                             <div class="service-card">
-                                <div class="service-icon" style="${capability.iconStyle || ''}">
+                                <div class="service-icon" style="${capability.iconStyle || ''}" aria-hidden="true">
                                     <i class="${capability.icon || 'fas fa-cog'}"></i>
                                 </div>
                                 <h3 class="service-title">${capability.title || 'Capability'}</h3>
@@ -764,7 +865,7 @@ class ZoonApp {
                     <div class="process-steps">
                         ${(data.workflow?.steps || []).map(step => `
                             <div class="process-step">
-                                <div class="step-number">${step.number || '1'}</div>
+                                <div class="step-number" aria-label="Step ${step.number || '1'}">${step.number || '1'}</div>
                                 <h3 class="step-title">${step.title || 'Step'}</h3>
                                 <p class="step-description">${step.description || 'Description'}</p>
                             </div>
@@ -776,8 +877,8 @@ class ZoonApp {
             <section style="padding: 100px 0; text-align: center;">
                 <div class="page-container">
                     <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Ready to Get Started?</h2>
-                    <button class="cta-button" data-page="contact">
-                        <i class="fas fa-calendar"></i> Schedule Consultation
+                    <button class="cta-button" data-page="contact" aria-label="Schedule consultation">
+                        <i class="fas fa-calendar" aria-hidden="true"></i> Schedule Consultation
                     </button>
                 </div>
             </section>
@@ -790,7 +891,7 @@ class ZoonApp {
                 <div class="page-container">
                     <div class="service-hero-content">
                         <div class="service-hero-badge">
-                            <i class="fas fa-microchip"></i> ${data.category || 'Technology'}
+                            <i class="fas fa-microchip" aria-hidden="true"></i> ${data.category || 'Technology'}
                         </div>
                         <h1 class="service-hero-title">${data.title || 'Technology Stack'}</h1>
                         <p class="service-hero-subtitle">${data.subtitle || 'Our technology expertise'}</p>
@@ -805,7 +906,7 @@ class ZoonApp {
                     <div class="services-grid">
                         ${(data.sections?.items || []).map(section => `
                             <div class="service-card">
-                                <div class="service-icon">
+                                <div class="service-icon" aria-hidden="true">
                                     <i class="${section.icon || 'fas fa-cog'}"></i>
                                 </div>
                                 <h3 class="service-title">${section.title || 'Category'}</h3>
@@ -828,7 +929,7 @@ class ZoonApp {
                 <div class="page-container">
                     <div class="service-hero-content">
                         <div class="service-hero-badge">
-                            <i class="fas fa-chart-line"></i> Case Studies
+                            <i class="fas fa-chart-line" aria-hidden="true"></i> Case Studies
                         </div>
                         <h1 class="service-hero-title">${data.title || 'Case Studies'}</h1>
                         <p class="service-hero-subtitle">${data.subtitle || 'Real-world results'}</p>
@@ -840,7 +941,7 @@ class ZoonApp {
                 <div class="services-grid" style="padding: 80px 0;">
                     ${(data.cases || []).map(caseStudy => `
                         <div class="service-card">
-                            <div class="service-icon" style="background: ${caseStudy.color || 'var(--gradient-card)'}">
+                            <div class="service-icon" style="background: ${caseStudy.color || 'var(--gradient-card)'}" aria-hidden="true">
                                 <i class="${caseStudy.icon || 'fas fa-chart-bar'}"></i>
                             </div>
                             <span class="service-hero-badge" style="display: inline-block; margin-bottom: 20px;">
@@ -870,7 +971,7 @@ class ZoonApp {
                 <div class="page-container">
                     <div class="service-hero-content">
                         <div class="service-hero-badge">
-                            <i class="fas fa-users"></i> About Us
+                            <i class="fas fa-users" aria-hidden="true"></i> About Us
                         </div>
                         <h1 class="service-hero-title">${data.title || 'About Zoon.ai'}</h1>
                         <p class="service-hero-subtitle">${data.subtitle || 'Our story and mission'}</p>
@@ -906,7 +1007,7 @@ class ZoonApp {
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
                         ${(data.team || []).map(member => `
                             <div style="text-align: center;">
-                                <div style="width: 150px; height: 150px; background: var(--gradient-cyber); border-radius: 50%; margin: 0 auto 20px;"></div>
+                                <div style="width: 150px; height: 150px; background: var(--gradient-cyber); border-radius: 50%; margin: 0 auto 20px;" aria-hidden="true"></div>
                                 <h3 style="color: var(--text-primary); margin-bottom: 10px;">${member.name || 'Team Member'}</h3>
                                 <p style="color: var(--accent-cyan); margin-bottom: 15px;">${member.role || 'Role'}</p>
                                 <p style="color: var(--text-secondary);">${member.bio || 'Bio'}</p>
@@ -924,7 +1025,7 @@ class ZoonApp {
                 <div class="page-container">
                     <div class="service-hero-content">
                         <div class="service-hero-badge">
-                            <i class="${data.icon || 'fas fa-file'}"></i> ${data.category || 'Page'}
+                            <i class="${data.icon || 'fas fa-file'}" aria-hidden="true"></i> ${data.category || 'Page'}
                         </div>
                         <h1 class="service-hero-title">${data.title || 'Page Title'}</h1>
                         <p class="service-hero-subtitle">${data.subtitle || 'Page description'}</p>
@@ -947,8 +1048,8 @@ class ZoonApp {
                             
                             ${section.cta ? `
                                 <div style="margin-top: 30px;">
-                                    <button class="cta-button" data-page="${section.cta.page || 'contact'}">
-                                        <i class="${section.cta.icon || 'fas fa-rocket'}"></i> ${section.cta.text || 'Learn More'}
+                                    <button class="cta-button" data-page="${section.cta.page || 'contact'}" aria-label="${section.cta.text || 'Learn more'}">
+                                        <i class="${section.cta.icon || 'fas fa-rocket'}" aria-hidden="true"></i> ${section.cta.text || 'Learn More'}
                                     </button>
                                 </div>
                             ` : ''}
@@ -966,7 +1067,7 @@ class ZoonApp {
         mainContent.innerHTML = `
             <section class="error-page" style="min-height: 70vh; display: flex; align-items: center; justify-content: center;">
                 <div class="page-container" style="text-align: center;">
-                    <div class="error-icon" style="font-size: 4rem; color: var(--accent-red); margin-bottom: 30px;">
+                    <div class="error-icon" style="font-size: 4rem; color: var(--accent-red); margin-bottom: 30px;" aria-hidden="true">
                         <i class="fas fa-exclamation-triangle"></i>
                     </div>
                     <h1 style="font-size: 3rem; margin-bottom: 20px; color: var(--text-primary);">Page Not Found</h1>
@@ -974,16 +1075,36 @@ class ZoonApp {
                         Sorry, we couldn't load the "${pageName}" page. It may be temporarily unavailable.
                     </p>
                     <div style="display: flex; gap: 20px; justify-content: center;">
-                        <button class="cta-button" onclick="app.loadPage('home')">
-                            <i class="fas fa-home"></i> Return Home
+                        <button class="cta-button" onclick="app.loadPage('home')" aria-label="Return to home page">
+                            <i class="fas fa-home" aria-hidden="true"></i> Return Home
                         </button>
-                        <button class="secondary-button" onclick="app.loadPage('contact')">
-                            <i class="fas fa-headset"></i> Contact Support
+                        <button class="secondary-button" onclick="app.loadPage('contact')" aria-label="Contact support">
+                            <i class="fas fa-headset" aria-hidden="true"></i> Contact Support
                         </button>
                     </div>
                 </div>
             </section>
         `;
+    }
+
+    announcePageChange(pageTitle) {
+        // Create an announcement for screen readers
+        const announcement = document.createElement('div');
+        announcement.setAttribute('aria-live', 'polite');
+        announcement.setAttribute('aria-atomic', 'true');
+        announcement.style.position = 'absolute';
+        announcement.style.width = '1px';
+        announcement.style.height = '1px';
+        announcement.style.padding = '0';
+        announcement.style.margin = '-1px';
+        announcement.style.overflow = 'hidden';
+        announcement.style.clip = 'rect(0, 0, 0, 0)';
+        announcement.style.whiteSpace = 'nowrap';
+        announcement.style.border = '0';
+        announcement.textContent = `Page loaded: ${pageTitle}`;
+        
+        document.body.appendChild(announcement);
+        setTimeout(() => announcement.remove(), 1000);
     }
 
     initPageScripts(pageName) {
@@ -1010,15 +1131,6 @@ class ZoonApp {
         // Initialize neural network animation
         this.initNeuralNetwork();
         
-        // Initialize form submission
-        const form = document.getElementById('project-form');
-        if (form) {
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                this.handleFormSubmit(form);
-            });
-        }
-        
         // Initialize stats counter animation
         this.animateStats();
         
@@ -1027,13 +1139,8 @@ class ZoonApp {
     }
 
     initContactPage() {
-        const form = document.getElementById('project-form');
-        if (form) {
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                this.handleFormSubmit(form);
-            });
-        }
+        // Contact page specific initialization
+        console.log('Initializing contact page');
     }
 
     initServicePage(serviceName) {
@@ -1057,14 +1164,36 @@ class ZoonApp {
         console.log('Initializing generic page');
     }
 
+    initForms() {
+        // Initialize all forms on the page
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            if (form.id === 'project-form' && !form.hasAttribute('data-initialized')) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.handleFormSubmit(form);
+                });
+                form.setAttribute('data-initialized', 'true');
+            }
+        });
+    }
+
     handleFormSubmit(form) {
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
         
+        // Validate form
+        if (!this.validateForm(data)) {
+            this.showNotification('Please fill in all required fields correctly.', 'error');
+            return;
+        }
+        
         // Show loading state
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        const originalState = submitBtn.disabled;
+        
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Sending...';
         submitBtn.disabled = true;
         
         // Simulate API call
@@ -1080,8 +1209,22 @@ class ZoonApp {
             
             // Reset button
             submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
+            submitBtn.disabled = originalState;
         }, 2000);
+    }
+
+    validateForm(data) {
+        // Basic validation
+        if (!data.name || data.name.trim().length < 2) {
+            return false;
+        }
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!data.email || !emailRegex.test(data.email)) {
+            return false;
+        }
+        
+        return true;
     }
 
     showNotification(message, type = 'info') {
@@ -1094,13 +1237,15 @@ class ZoonApp {
         // Create notification element
         const notification = document.createElement('div');
         notification.className = `notification notification-${type}`;
+        notification.setAttribute('role', 'alert');
+        notification.setAttribute('aria-live', 'polite');
         notification.innerHTML = `
             <div class="notification-content">
-                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}" aria-hidden="true"></i>
                 <span>${message}</span>
             </div>
-            <button class="notification-close">
-                <i class="fas fa-times"></i>
+            <button class="notification-close" aria-label="Close notification">
+                <i class="fas fa-times" aria-hidden="true"></i>
             </button>
         `;
         
@@ -1113,7 +1258,7 @@ class ZoonApp {
         }, 10);
         
         // Auto remove after 5 seconds
-        setTimeout(() => {
+        const autoRemove = setTimeout(() => {
             notification.classList.remove('show');
             setTimeout(() => {
                 if (notification.parentNode) {
@@ -1123,7 +1268,9 @@ class ZoonApp {
         }, 5000);
         
         // Close button handler
-        notification.querySelector('.notification-close').addEventListener('click', () => {
+        const closeBtn = notification.querySelector('.notification-close');
+        closeBtn.addEventListener('click', () => {
+            clearTimeout(autoRemove);
             notification.classList.remove('show');
             setTimeout(() => {
                 if (notification.parentNode) {
@@ -1173,10 +1320,14 @@ class ZoonApp {
         const particlesContainer = document.getElementById('particles');
         if (!particlesContainer) return;
         
+        // Clear existing particles
+        particlesContainer.innerHTML = '';
+        
         // Create particles
         for (let i = 0; i < 50; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
+            particle.setAttribute('aria-hidden', 'true');
             
             // Random position and size
             const size = Math.random() * 3 + 1;
@@ -1209,11 +1360,14 @@ class ZoonApp {
         if (!canvas) return;
         
         const ctx = canvas.getContext('2d');
+        
+        // Set initial canvas size
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
         
         let nodes = [];
         let connections = [];
+        let animationId = null;
         
         // Create nodes
         for (let i = 0; i < 15; i++) {
@@ -1282,32 +1436,44 @@ class ZoonApp {
                 }
             });
             
-            requestAnimationFrame(animate);
+            animationId = requestAnimationFrame(animate);
         }
         
         animate();
         
         // Handle window resize
+        let resizeTimer;
         window.addEventListener('resize', () => {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                }
+                canvas.width = canvas.offsetWidth;
+                canvas.height = canvas.offsetHeight;
+                animate();
+            }, 250);
         });
     }
 
     animateStats() {
         const statElements = document.querySelectorAll('.stat-number');
         statElements.forEach(element => {
-            const target = parseInt(element.textContent);
+            const target = parseInt(element.textContent.replace(/[^0-9]/g, '')) || 0;
             let current = 0;
             const increment = target / 100;
+            const duration = 2000; // 2 seconds
+            const steps = 100;
+            const stepTime = duration / steps;
+            
             const interval = setInterval(() => {
                 current += increment;
                 if (current >= target) {
                     current = target;
                     clearInterval(interval);
                 }
-                element.textContent = Math.round(current);
-            }, 20);
+                element.textContent = Math.round(current) + (element.textContent.includes('%') ? '%' : element.textContent.includes('x') ? 'x' : '+');
+            }, stepTime);
         });
     }
 
@@ -1321,104 +1487,158 @@ class ZoonApp {
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', () => {
+    // Check for browser support
+    if (!('fetch' in window)) {
+        console.error('Your browser does not support fetch API');
+        return;
+    }
+    
     window.app = new ZoonApp();
 });
 
-// Add CSS for notifications
-const notificationCSS = `
-    .notification {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: var(--gradient-card);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-        padding: 15px 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        min-width: 300px;
-        max-width: 400px;
-        transform: translateX(100%);
-        opacity: 0;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-        z-index: 1000;
-        backdrop-filter: blur(10px);
-    }
-    
-    .notification.show {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    
-    .notification-success {
-        border-left: 4px solid var(--accent-cyan);
-    }
-    
-    .notification-error {
-        border-left: 4px solid var(--accent-red);
-    }
-    
-    .notification-info {
-        border-left: 4px solid var(--accent-purple);
-    }
-    
-    .notification-content {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        color: var(--text-primary);
-    }
-    
-    .notification-content i {
-        font-size: 1.2rem;
-    }
-    
-    .notification-close {
-        background: none;
-        border: none;
-        color: var(--text-secondary);
-        cursor: pointer;
-        font-size: 1rem;
-        padding: 0;
-        margin-left: 10px;
-    }
-    
-    .notification-close:hover {
-        color: var(--text-primary);
-    }
-    
-    /* Particles animation */
-    .particle {
-        position: absolute;
-        border-radius: 50%;
-        pointer-events: none;
-        animation: float linear infinite;
-        animation-play-state: paused;
-    }
-    
-    @keyframes float {
-        0% {
-            transform: translateY(0) translateX(0);
-            opacity: 0;
-        }
-        10% {
-            opacity: 1;
-        }
-        90% {
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(-100vh) translateX(100px);
-            opacity: 0;
-        }
-    }
-`;
-
-// Add styles to document
+// Add CSS for notifications if not already added
 if (!document.querySelector('#notification-styles')) {
     const styleSheet = document.createElement('style');
     styleSheet.id = 'notification-styles';
-    styleSheet.textContent = notificationCSS;
+    styleSheet.textContent = `
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-width: 300px;
+            max-width: 400px;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .notification-success {
+            border-left: 4px solid var(--accent-cyan);
+        }
+        
+        .notification-error {
+            border-left: 4px solid var(--accent-red, #ff4757);
+        }
+        
+        .notification-info {
+            border-left: 4px solid var(--accent-purple);
+        }
+        
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-primary);
+        }
+        
+        .notification-content i {
+            font-size: 1.2rem;
+        }
+        
+        .notification-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0;
+            margin-left: 10px;
+            transition: color 0.2s ease;
+        }
+        
+        .notification-close:hover {
+            color: var(--text-primary);
+        }
+        
+        /* Particles animation */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float linear infinite;
+            animation-play-state: paused;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        /* Mobile dropdown styles */
+        .mobile-nav .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .mobile-nav .dropdown-content.active {
+            max-height: 500px;
+        }
+        
+        .mobile-nav .dropdown .fa-chevron-down {
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-nav .dropdown.active .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+    `;
     document.head.appendChild(styleSheet);
 }
+
+// Add polyfill for smooth scrolling
+if (!('scrollBehavior' in document.documentElement.style)) {
+    const smoothScrollPolyfill = document.createElement('script');
+    smoothScrollPolyfill.src = 'https://cdn.jsdelivr.net/npm/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js';
+    smoothScrollPolyfill.onload = () => {
+        if (window.smoothscroll) {
+            window.smoothscroll.polyfill();
+        }
+    };
+    document.head.appendChild(smoothScrollPolyfill);
+}
+
+// Add error boundary for the application
+window.addEventListener('error', (event) => {
+    console.error('Uncaught error:', event.error);
+    const app = window.app;
+    if (app && app.showNotification) {
+        app.showNotification('An unexpected error occurred. Please refresh the page.', 'error');
+    }
+});
+
+// Add unhandled promise rejection handler
+window.addEventListener('unhandledrejection', (event) => {
+    console.error('Unhandled promise rejection:', event.reason);
+    const app = window.app;
+    if (app && app.showNotification) {
+        app.showNotification('An unexpected error occurred. Please refresh the page.', 'error');
+    }
+});
