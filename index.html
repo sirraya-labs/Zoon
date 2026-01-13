@@ -5,10 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zoon.ai | AI-First Software Solutions</title>
     
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Zoon.ai provides cutting-edge AI-first software solutions for businesses. We specialize in AI/ML, modern web development, enterprise solutions, and UX design.">
+    <meta name="keywords" content="AI solutions, machine learning, software development, web development, enterprise software, UX design">
+    <meta name="author" content="Zoon.ai">
+    <meta property="og:title" content="Zoon.ai | AI-First Software Solutions">
+    <meta property="og:description" content="Engineering intelligent systems for the next era of business">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zoon.ai">
+    <meta property="og:image" content="https://zoon.ai/assets/images/og-image.jpg">
+    
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     
     <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Vanta.js Libraries -->
@@ -19,11 +31,12 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300f3ff'>🤖</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300f3ff'>🤖</text></svg>">
 </head>
 <body>
     <!-- Page Loader -->
-    <div class="page-loader" id="page-loader">
+    <div class="page-loader" id="page-loader" aria-hidden="true">
         <div class="loader-content">
             <div class="loader-logo">Zoon.ai</div>
             <div class="loader-bar">
@@ -33,65 +46,78 @@
     </div>
 
     <!-- Background Effects -->
-    <div id="vanta-bg"></div>
-    <div class="gradient-overlay"></div>
-    <div class="particles" id="particles"></div>
+    <div id="vanta-bg" aria-hidden="true"></div>
+    <div class="gradient-overlay" aria-hidden="true"></div>
+    <div class="particles" id="particles" aria-hidden="true"></div>
 
     <!-- Header -->
     <header id="main-header">
         <div class="header-container">
             <div class="logo-container">
-                <a href="#" class="logo-main" data-page="home">Zoon.ai</a>
-                <span class="ai-badge">AI-FIRST</span>
+                <a href="#" class="logo-main" data-page="home" aria-label="Zoon.ai Home">
+                    <span>Zoon.ai</span>
+                </a>
+                <span class="ai-badge" aria-label="AI-First company">AI-FIRST</span>
             </div>
             
             <!-- Desktop Navigation -->
-            <nav class="desktop-nav">
-                <div class="nav-links" id="nav-links">
+            <nav class="desktop-nav" aria-label="Main navigation">
+                <div class="nav-links" id="nav-links" role="menubar">
                     <!-- Navigation will be loaded dynamically -->
                 </div>
-                <button class="cta-button" id="header-cta">
-                    <i class="fas fa-rocket"></i> Start Project
+                <button class="cta-button" id="header-cta" data-page="contact" aria-label="Start a new project">
+                    <i class="fas fa-rocket" aria-hidden="true"></i> Start Project
                 </button>
             </nav>
             
             <!-- Mobile Toggle -->
-            <div class="mobile-toggle" id="mobile-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-nav">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
         </div>
     </header>
 
     <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobile-nav">
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
         <!-- Mobile nav will be loaded dynamically -->
-    </div>
+    </nav>
 
     <!-- Main Content Area -->
-    <main id="main-content">
+    <main id="main-content" role="main">
         <!-- Content loads here dynamically -->
     </main>
 
     <!-- Footer -->
-    <footer id="main-footer">
+    <footer id="main-footer" role="contentinfo">
         <!-- Footer loads here dynamically -->
     </footer>
 
     <!-- JavaScript -->
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js" defer></script>
     
-    <!-- Initialize App -->
+    <!-- Initialize Vanta.js background -->
     <script>
-        // Initialize the application when DOM is loaded
+        // Initialize Vanta.js background effect
         document.addEventListener('DOMContentLoaded', function() {
-            // Create global app instance
-            window.app = new ZoonApp();
-            
-            // Set up header CTA button
-            document.getElementById('header-cta').addEventListener('click', function() {
-                window.app.loadPage('contact');
-                window.app.scrollToTop();
-            });
+            // Only initialize Vanta if it's available
+            if (window.VANTA) {
+                window.vantaEffect = VANTA.NET({
+                    el: "#vanta-bg",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    color: 0x00f3ff,
+                    backgroundColor: 0x0a0a0f,
+                    points: 12.00,
+                    maxDistance: 25.00,
+                    spacing: 18.00,
+                    showDots: false
+                });
+            }
         });
     </script>
 </body>

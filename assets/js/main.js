@@ -644,7 +644,7 @@ class ZoonApp {
                     <div class="stats-container">
                         ${(data.stats || [
                             { value: '200+', label: 'AI Projects Delivered' },
-                            { value: '%', label: 'Client Satisfaction' },
+                            { value: '99%', label: 'Client Satisfaction' },
                             { value: '45%', label: 'Avg. Efficiency Gain' },
                             { value: '4x', label: 'Avg. ROI for Clients' }
                         ]).map(stat => `
