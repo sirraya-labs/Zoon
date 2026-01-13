@@ -74,6 +74,7 @@ a {
 button {
     font-family: 'Inter', sans-serif;
     cursor: pointer;
+    border: none;
 }
 
 /* ==========================================================================
@@ -359,6 +360,12 @@ header.scrolled {
     position: relative;
     overflow: hidden;
     letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    white-space: nowrap;
+    min-width: fit-content;
 }
 
 .cta-button::before {
@@ -393,6 +400,12 @@ header.scrolled {
     transition: all var(--transition-normal);
     position: relative;
     overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    white-space: nowrap;
+    min-width: fit-content;
 }
 
 .secondary-button::before {
@@ -544,6 +557,7 @@ footer::before {
     display: flex;
     gap: 25px;
     margin-top: 60px;
+    flex-wrap: wrap;
 }
 
 /* Service Hero */
@@ -589,7 +603,7 @@ footer::before {
     margin-bottom: 40px;
 }
 
-/* Stats */
+/* Stats Section - Fixed to be in a single row */
 .stats {
     display: flex;
     justify-content: space-around;
@@ -603,24 +617,25 @@ footer::before {
     margin-bottom: var(--section-spacing);
     position: relative;
     overflow: hidden;
+    flex-wrap: nowrap;
+    align-items: center;
 }
 
-.stats::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     width: 100%;
-    height: 100%;
-    background: var(--gradient-cyber);
-    opacity: 0.03;
-    z-index: -1;
+    gap: 40px;
+    flex-wrap: wrap;
 }
 
 .stat-item {
     text-align: center;
     position: relative;
     padding: 20px;
+    flex: 1;
+    min-width: 200px;
 }
 
 .stat-number {
@@ -639,6 +654,32 @@ footer::before {
     color: var(--text-secondary);
     font-size: 20px;
     font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Add separators between stats */
+.stat-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 60px;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.stats::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-cyber);
+    opacity: 0.03;
+    z-index: -1;
 }
 
 /* Section Headers */
@@ -1087,14 +1128,6 @@ footer::before {
     50% { transform: translateY(-20px); }
 }
 
-@keyframes floatAround {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    25% { transform: translate(100px, 100px) rotate(90deg); }
-    50% { transform: translate(0, 200px) rotate(180deg); }
-    75% { transform: translate(-100px, 100px) rotate(270deg); }
-    100% { transform: translate(0, 0) rotate(360deg); }
-}
-
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -1121,6 +1154,10 @@ footer::before {
     
     .services-grid {
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+    
+    .stats-container {
+        flex-wrap: nowrap;
     }
 }
 
@@ -1190,6 +1227,25 @@ footer::before {
         grid-template-columns: 1fr;
         gap: 40px;
     }
+    
+    .stats-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .stat-item {
+        min-width: 180px;
+    }
+    
+    .stat-item::after {
+        display: none;
+    }
+    
+    .hero-cta-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1206,10 +1262,24 @@ footer::before {
         gap: 20px;
     }
     
+    .cta-button, .secondary-button {
+        width: 100%;
+        justify-content: center;
+    }
+    
     .stats {
         flex-direction: column;
         gap: 50px;
         padding: 80px 5%;
+    }
+    
+    .stats-container {
+        flex-direction: column;
+        gap: 50px;
+    }
+    
+    .stat-item {
+        min-width: 100%;
     }
     
     .section-title {
@@ -1234,6 +1304,15 @@ footer::before {
         font-size: 2.2rem;
     }
     
+    .hero-badge {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
     .service-card {
         padding: 30px 20px;
     }
@@ -1244,6 +1323,14 @@ footer::before {
     
     .contact-container {
         padding: 40px 20px;
+    }
+    
+    .stat-number {
+        font-size: 2.5rem;
+    }
+    
+    .stat-label {
+        font-size: 16px;
     }
 }
 
@@ -1394,15 +1481,7 @@ main {
     position: absolute;
     font-size: 24px;
     opacity: 0.3;
-    animation: floatAround 20s infinite linear;
-}
-
-/* Improve button alignment */
-.cta-button, .secondary-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+    animation: float 20s infinite linear;
 }
 
 /* Fix form alignment */
@@ -1460,7 +1539,26 @@ main {
     min-width: 250px;
 }
 
-/* Improve responsive design */
+/* Fix button alignment on mobile */
+@media (max-width: 768px) {
+    .cta-button, .secondary-button {
+        width: 100%;
+    }
+}
+
+/* Additional fixes for stats animations */
+.stat-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.stat-item:nth-child(1) { animation-delay: 0.1s; }
+.stat-item:nth-child(2) { animation-delay: 0.2s; }
+.stat-item:nth-child(3) { animation-delay: 0.3s; }
+.stat-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* Fix responsive design */
 @media (max-width: 1400px) {
     .page-container,
     .hero-content,
@@ -1543,4 +1641,14 @@ main {
     .service-hero-title {
         font-size: 1.8rem;
     }
+}
+
+/* Fix button hover effects */
+.cta-button, .secondary-button {
+    transition: all var(--transition-normal) !important;
+    will-change: transform;
+}
+
+.cta-button:hover, .secondary-button:hover {
+    transform: translateY(-5px) scale(1.02) !important;
 }
