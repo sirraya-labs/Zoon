@@ -505,29 +505,42 @@ class ZoonApp {
         });
     }
 
+    // In your ZoonApp class, modify the loadPage method:
     async loadPage(pageName) {
-        if (this.currentPage === pageName) return;
+        // Don't reload homepage if it's already displayed
+        if (pageName === 'home' && this.currentPage === 'home') {
+            this.scrollToTop();
+            return;
+        }
         
         this.currentPage = pageName;
         
         // Update active nav link
         this.updateActiveNav(pageName);
         
-        // Show loading state
-        const mainContent = document.getElementById('main-content');
-        if (mainContent) {
-            mainContent.innerHTML = `
-                <div style="text-align: center; padding: 100px 20px;" aria-live="polite">
-                    <div class="loader-logo" style="font-size: 2rem; margin-bottom: 20px;">Loading...</div>
-                    <div class="loader-bar" style="width: 200px;">
-                        <div class="loader-progress"></div>
+        // Only show loading for non-home pages
+        if (pageName !== 'home') {
+            const mainContent = document.getElementById('main-content');
+            if (mainContent) {
+                mainContent.innerHTML = `
+                    <div style="text-align: center; padding: 100px 20px;" aria-live="polite">
+                        <div class="loader-logo" style="font-size: 2rem; margin-bottom: 20px;">Loading...</div>
+                        <div class="loader-bar" style="width: 200px;">
+                            <div class="loader-progress"></div>
+                        </div>
                     </div>
-                </div>
-            `;
+                `;
+            }
         }
         
         try {
-            // Load page content from JSON
+            // For homepage, just scroll to top since content is already there
+            if (pageName === 'home') {
+                this.scrollToTop();
+                return;
+            }
+            
+            // Load other pages from JSON
             const response = await fetch(`data/${pageName}.json`);
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const pageData = await response.json();
@@ -543,9 +556,6 @@ class ZoonApp {
             
             // Initialize page-specific functionality
             this.initPageScripts(pageName);
-            
-            // Announce page change for screen readers
-            this.announcePageChange(pageData.title || pageName);
             
         } catch (error) {
             console.error(`Error loading page ${pageName}:`, error);
